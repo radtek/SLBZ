@@ -62,8 +62,9 @@ namespace YBF
                         for (int i = 12; i < allLines.Length; i++)
                         {
                             string fileFullName = allLines[i];
-                            if (fileFullName.IndexOf(@"\\ev08382-01\JobData\pdf\已下单PDF"
-                                ,StringComparison.CurrentCultureIgnoreCase)==0
+                            if (Path.GetDirectoryName(fileFullName)
+                                .Equals(@"\\ev08382-01\JobData\pdf\已下单PDF"
+                                ,StringComparison.CurrentCultureIgnoreCase)
                                 && File.Exists(fileFullName))
                             {
                                 string toPath = Path.GetDirectoryName(fileFullName)

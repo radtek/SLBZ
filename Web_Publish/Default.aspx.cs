@@ -107,7 +107,7 @@ public partial class PublishProcess : System.Web.UI.Page
         this.Timer1.Enabled = true;
     }
 
-    private void  ShowProcess(bool isShowGdh)
+    private  void  ShowProcess(bool isShowGdh)
     {
        
         //  //出版的Excel文件
