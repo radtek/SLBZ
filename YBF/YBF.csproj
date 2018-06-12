@@ -1,0 +1,187 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{AFB15FD5-2384-4560-AA90-717E3AEE355F}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>YBF</RootNamespace>
+    <AssemblyName>YBF</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>ooopic_1523149264.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="ICSharpCode.SharpZipLib">
+      <HintPath>..\..\ConsoleApplication1\WindowsFormsApplication1\bin\Debug\ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
+    <Reference Include="Ionic.Zip">
+      <HintPath>..\..\ConsoleApplication1\WindowsFormsApplication1\bin\Debug\Ionic.Zip.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="NPOI">
+      <HintPath>..\..\ConsoleApplication1\WindowsFormsApplication1\bin\Debug\NPOI.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OOXML">
+      <HintPath>..\..\ConsoleApplication1\WindowsFormsApplication1\bin\Debug\NPOI.OOXML.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OpenXml4Net">
+      <HintPath>..\..\ConsoleApplication1\WindowsFormsApplication1\bin\Debug\NPOI.OpenXml4Net.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OpenXmlFormats">
+      <HintPath>..\..\ConsoleApplication1\WindowsFormsApplication1\bin\Debug\NPOI.OpenXmlFormats.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.SQLite">
+      <HintPath>..\..\..\..\xiao\0000\HanDe_JobManager_SQLite\FormMian\bin\Debug\System.Data.SQLite.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Class\Comm\Comm_Method.cs" />
+    <Compile Include="Class\Comm\ExcelHelper.cs" />
+    <Compile Include="Class\Comm\PinYinConverter.cs" />
+    <Compile Include="Class\Model\ExcelFileInfo.cs" />
+    <Compile Include="Class\Model\JobInfo.cs" />
+    <Compile Include="Class\Model\Ywj.cs" />
+    <Compile Include="Class\SQLiteDbHelper.cs" />
+    <Compile Include="Class\SQLiteList.cs" />
+    <Compile Include="WinForm\ChuBan\FormBaoBiao.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WinForm\ChuBan\FormBaoBiao.Designer.cs">
+      <DependentUpon>FormBaoBiao.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WinForm\ChuBan\FormChuBan.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WinForm\ChuBan\FormChuBan.Designer.cs">
+      <DependentUpon>FormChuBan.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WinForm\ChuBan\FormFindOld.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WinForm\ChuBan\FormFindOld.Designer.cs">
+      <DependentUpon>FormFindOld.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WinForm\Ywj\FormYwj.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WinForm\Ywj\FormYwj.Designer.cs">
+      <DependentUpon>FormYwj.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WinForm\Ywj\FormYwjInformation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WinForm\Ywj\FormYwjInformation.Designer.cs">
+      <DependentUpon>FormYwjInformation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WinForm\Ywj\FormYwjPaichu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WinForm\Ywj\FormYwjPaichu.Designer.cs">
+      <DependentUpon>FormYwjPaichu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WinForm\Ywj\FormYwjSetting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WinForm\Ywj\FormYwjSetting.Designer.cs">
+      <DependentUpon>FormYwjSetting.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="WinForm\ChuBan\FormBaoBiao.resx">
+      <DependentUpon>FormBaoBiao.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WinForm\ChuBan\FormChuBan.resx">
+      <DependentUpon>FormChuBan.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WinForm\ChuBan\FormFindOld.resx">
+      <DependentUpon>FormFindOld.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WinForm\Ywj\FormYwj.resx">
+      <DependentUpon>FormYwj.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WinForm\Ywj\FormYwjInformation.resx">
+      <DependentUpon>FormYwjInformation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WinForm\Ywj\FormYwjPaichu.resx">
+      <DependentUpon>FormYwjPaichu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WinForm\Ywj\FormYwjSetting.resx">
+      <DependentUpon>FormYwjSetting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <None Include="app.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ooopic_1523149264.ico" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

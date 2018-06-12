@@ -1,0 +1,35 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="MasterPage.master.cs" Inherits="MasterPage" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+
+     <title> <%=GetAspTitle() %></title>
+    <asp:ContentPlaceHolder id="HeadContent" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+    <div>
+        <asp:Menu ID="Menu1" runat="server" Orientation="Horizontal" CssClass="static" >
+            <Items>
+                <asp:MenuItem Text="出版记录" Value="出版记录" NavigateUrl="~/Default.aspx">
+                </asp:MenuItem>
+                <asp:MenuItem Text="稿袋号" Value="稿袋号" NavigateUrl="http://128.1.30.144/GaoDaiHao.aspx">
+                </asp:MenuItem>
+                <asp:MenuItem Text="_小机" Value="_小机_" NavigateUrl="http://128.1.130.31/">
+                </asp:MenuItem>
+                <asp:MenuItem Text="_大机" Value="大机" 
+                    Selected="True" NavigateUrl="http://128.1.30.144/">
+                </asp:MenuItem>
+            </Items>
+        </asp:Menu>
+        <br />
+        <asp:ContentPlaceHolder id="MainContent" runat="server">
+        
+        </asp:ContentPlaceHolder>
+    </div>
+    </form>
+</body>
+</html>
