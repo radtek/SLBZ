@@ -13,11 +13,8 @@ using System.Threading;
 
 public partial class PublishProcess : System.Web.UI.Page
 {
-    public DateTime DT_S { get; set; }
     protected void Page_Load(object sender, EventArgs e)
     {
-        DT_S = DateTime.Now;
-
         string[] values = Request.QueryString.GetValues("id");
         bool isShowGdh = false;
         if (values != null && (new string[] { "1", "true" }.Contains(values[0])))
