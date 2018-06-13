@@ -61,6 +61,7 @@ public static class EvoProcess
 
     public static List<String> Get_dynamic_data_Files_All()
     {
+        int lastHours = 24*300;
         String path = GetEvoPath() + "\\dynamic_data\\processes";
         // String path = "\\\\128.1.30.144\\historical_data\\processes";
         String searchPattern = "1-2{applying-geometry}.out.jtk";
@@ -70,7 +71,7 @@ public static class EvoProcess
 
         foreach (string guidPath in Directory.EnumerateDirectories(path))
         {
-            if (Directory.GetLastWriteTime(guidPath).AddHours(48)<DateTime.Now)
+            if (Directory.GetLastWriteTime(guidPath).AddHours(lastHours) < DateTime.Now)
             {
                 continue;
             }
