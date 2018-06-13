@@ -25,7 +25,7 @@ public partial class PublishProcess : System.Web.UI.Page
     }
 
 
-    internal static int CompareProcessByCompletionTime(EvoPrintingToDeviceProcessInfo x, EvoPrintingToDeviceProcessInfo y)
+    internal static int CompareProcessByCompletionTime(EvoProcessInfo x, EvoProcessInfo y)
     {
         if (x == null)
         {
@@ -129,11 +129,11 @@ public partial class PublishProcess : System.Web.UI.Page
         //****历史记录****
         //加载指定小时以内的完成出版的记录	
         int hour = 2;
-        List<EvoPrintingToDeviceProcessInfo> hisProcessList = new List<EvoPrintingToDeviceProcessInfo>();
+        List<EvoProcessInfo> hisProcessList = new List<EvoProcessInfo>();
 
         foreach (String fileFullName in EvoProcess.Get_historical_data_Files_hours(hour))
         {
-            EvoPrintingToDeviceProcessInfo process = new EvoPrintingToDeviceProcessInfo(fileFullName);
+            EvoProcessInfo process = new EvoProcessInfo(fileFullName);
             if (process != null)
             {
                 //判断GUID是否已经存在,并确定整个的完成时间
@@ -181,7 +181,7 @@ public partial class PublishProcess : System.Web.UI.Page
 
 
             //遍历整个整理好的列表,并且将数据添加到表格中
-            foreach (EvoPrintingToDeviceProcessInfo proInfo in hisProcessList)
+            foreach (EvoProcessInfo proInfo in hisProcessList)
             {
                 DataRow dr = gridVies_dt.NewRow();
                 StringBuilder sb = new StringBuilder();
@@ -243,11 +243,11 @@ public partial class PublishProcess : System.Web.UI.Page
 
         //*****当前出版记录
         //加载所有的完成出版的记录
-        List<EvoPrintingToDeviceProcessInfo> dynProcessList = new List<EvoPrintingToDeviceProcessInfo>();
+        List<EvoProcessInfo> dynProcessList = new List<EvoProcessInfo>();
 
         foreach (String fileFullName in EvoProcess.Get_dynamic_data_Files_All())
         {
-            EvoPrintingToDeviceProcessInfo process = new EvoPrintingToDeviceProcessInfo(fileFullName);
+            EvoProcessInfo process = new EvoProcessInfo(fileFullName);
             if (process.FileList.Count > 0)
             {
                 //判断GUID是否已经存在,并确定整个的完成时间
@@ -296,7 +296,7 @@ public partial class PublishProcess : System.Web.UI.Page
 
 
             //遍历整个整理好的列表,并且将数据添加到表格中
-            foreach (EvoPrintingToDeviceProcessInfo proInfo in dynProcessList)
+            foreach (EvoProcessInfo proInfo in dynProcessList)
             {
                 DataRow dr = gridVies_dt.NewRow();
                 StringBuilder sb = new StringBuilder();
@@ -369,10 +369,10 @@ public partial class PublishProcess : System.Web.UI.Page
                 {
                     pmList.Add(new PrintingMachineInfo(row));
                 }
-                List<EvoPrintingToDeviceProcessInfo> allList = new List<EvoPrintingToDeviceProcessInfo>();
+                List<EvoProcessInfo> allList = new List<EvoProcessInfo>();
                 allList.AddRange(hisProcessList);
                 allList.AddRange(dynProcessList);
-                foreach (EvoPrintingToDeviceProcessInfo pro in allList)
+                foreach (EvoProcessInfo pro in allList)
                 {
                     PrintingMachineInfo pmInfo = pmList.Find(p => p.PlantSize_L == pro.Plant_L && p.PlantSize_S == pro.Plant_S);
                     if (pmInfo == null)
@@ -393,8 +393,9 @@ public partial class PublishProcess : System.Web.UI.Page
                         {
                             if (pro.ImagingPosition != null)
                             {
-                                CREO_TrimBox_MilliMetre pdfSize = pro.ImagingPosition.GetCREO_TrimBox_MilliMetre();
-                                if (pmInfo.MaxPrinting_S + pmInfo.Bite < pdfSize.High.Length + pro.OffsetY - 10)
+                                CREO_TrimBox_MilliMetre imaging = pro.ImagingPosition.GetCREO_TrimBox_MilliMetre();
+                                if (pmInfo.MaxPrinting_S + pmInfo.Bite < imaging.High.Length + pro.OffsetY - 10
+                                    ||imaging.Left.Length<0)
                                 {
                                     sb.Append("超出最大印刷面积<br />");
                                 }
@@ -406,13 +407,13 @@ public partial class PublishProcess : System.Web.UI.Page
                         if (sb.Length == 0)
                         {
                             bool isRepeat = false;
-                            foreach (EvoPrintingToDeviceProcessInfo pro_child in allList)
+                            foreach (EvoProcessInfo pro_child in allList)
                             {
                                 if (pro == pro_child)
                                 {
                                     continue;
                                 }
-                                if (pro_child.FileList.Contains(fileName))
+                                if (pro_child.Equals(pro))
                                 {
                                     isRepeat = true;
                                     break;

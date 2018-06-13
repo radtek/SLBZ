@@ -11,7 +11,7 @@ using HanDe_ClassLibrary.Common.Unit;
 /// <summary>
 ///印能捷作业记录的实例
 /// </summary>
-public class EvoPrintingToDeviceProcessInfo
+public class EvoProcessInfo
 {
     /// <summary>
     /// 唯一标识(GUID)
@@ -76,7 +76,7 @@ public class EvoPrintingToDeviceProcessInfo
     /// <summary>
     /// 实例化 印能捷作业记录
     /// </summary>
-    public EvoPrintingToDeviceProcessInfo()
+    public EvoProcessInfo()
     {
         this.FileList = new List<String>();
         this.CompletionTime = new DateTime();
@@ -88,7 +88,7 @@ public class EvoPrintingToDeviceProcessInfo
     /// <summary>
     /// 实例化 印能捷作业记录
     /// </summary>
-    public EvoPrintingToDeviceProcessInfo(string fileFullName)
+    public EvoProcessInfo(string fileFullName)
     {
         this.FileList = new List<String>();
         this.CompletionTime = new DateTime();
@@ -274,7 +274,36 @@ public class EvoPrintingToDeviceProcessInfo
                 fs.Dispose();
             }
         }
+
     }
 
+    public  bool Equals(EvoProcessInfo evo)
+    {
+        if (this==evo)
+        {
+            return true;
+        }
+        foreach (string file in evo.FileList)
+        {
+            if (this.FileList.Contains(file))
+            {
+                if (this.Plant_L!=evo.Plant_L||this.Plant_S!=evo.Plant_S||this.OffsetY!=evo.OffsetY
+                    ||this.RulingOrFeatureSize!=evo.RulingOrFeatureSize
+                    ||this.DotShape!=evo.DotShape||this.CalibrationTarget!=evo.CalibrationTarget)
+                {
+                    return false;
+                }
+                foreach (string color in evo.ColorList)
+                {
+                    if (!this.ColorList.Contains(color))
+                    {
+                        return false;
+                    }
+                }
+                return true;
+            }
+        }
+        return false;
+    }
 
 }
