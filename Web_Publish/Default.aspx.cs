@@ -13,6 +13,7 @@ using System.Threading;
 
 public partial class PublishProcess : System.Web.UI.Page
 {
+
     protected void Page_Load(object sender, EventArgs e)
     {
         string[] values = Request.QueryString.GetValues("id");
@@ -107,9 +108,8 @@ public partial class PublishProcess : System.Web.UI.Page
         this.Timer1.Enabled = true;
     }
 
-    private  void  ShowProcess(bool isShowGdh)
+    private void ShowProcess(bool isShowGdh)
     {
-       
         //  //出版的Excel文件
         DataTable dt_gdh_cpmc = new DataTable();
         if (isShowGdh)
@@ -395,7 +395,7 @@ public partial class PublishProcess : System.Web.UI.Page
                             {
                                 CREO_TrimBox_MilliMetre imaging = pro.ImagingPosition.GetCREO_TrimBox_MilliMetre();
                                 if (pmInfo.MaxPrinting_S + pmInfo.Bite < imaging.High.Length + pro.OffsetY - 10
-                                    ||imaging.Left.Length<0)
+                                    || imaging.Left.Length < 0)
                                 {
                                     sb.Append("超出最大印刷面积<br />");
                                 }
@@ -457,6 +457,4 @@ public partial class PublishProcess : System.Web.UI.Page
         {
         }
     }
-
-
 }
