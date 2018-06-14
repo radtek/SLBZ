@@ -84,8 +84,8 @@ namespace backupFile_YBF
                 }
 
                 //CTP输出记录表
-                CopyFile(@"E:\SOFTWARE\CTP输出记录表.xls"
-                    ,@"\\128.1.30.86\老厂彩印ctp\CTP输出记录表.xls",true);
+                BackupFile(new FileInfo(@"E:\SOFTWARE\CTP输出记录表.xls")
+                    ,@"\\128.1.30.86\老厂彩印ctp\CTP输出记录表.xls");
 
 
 

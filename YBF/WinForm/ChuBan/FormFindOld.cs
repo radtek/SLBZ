@@ -304,7 +304,8 @@ namespace YBF.WinForm.ChuBan
                 if (File.Exists(newPath))
                 {
                     FileSystem.CopyFile(newPath
-                        , @"\\128.1.30.111\柯和山\" + Path.GetFileName(newPath));
+                        , @"\\128.1.30.111\柯和山\" + Path.GetFileName(newPath)
+                        ,UIOption.AllDialogs,UICancelOption.DoNothing);
                 }
             }
         }
