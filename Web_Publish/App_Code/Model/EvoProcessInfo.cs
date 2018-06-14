@@ -78,11 +78,18 @@ public class EvoProcessInfo
     /// </summary>
     public EvoProcessInfo()
     {
+        InitList();
+    }
+
+    /// <summary>
+    /// 初始化所有列表集合
+    /// </summary>
+    private void InitList()
+    {
         this.FileList = new List<String>();
         this.CompletionTime = new DateTime();
         this.SubmissionDate = new DateTime();
-        this.ColorList = new List<String>();
-
+        this.ColorList = new List<String>(); 
     }
 
     /// <summary>
@@ -90,10 +97,7 @@ public class EvoProcessInfo
     /// </summary>
     public EvoProcessInfo(string fileFullName)
     {
-        this.FileList = new List<String>();
-        this.CompletionTime = new DateTime();
-        this.SubmissionDate = new DateTime();
-        this.ColorList = new List<String>();
+        InitList();
 
         FileStream fs = null;
         StreamReader sr = null;

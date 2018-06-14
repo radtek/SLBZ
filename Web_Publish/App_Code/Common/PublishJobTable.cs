@@ -11,87 +11,30 @@ using System.Data.OleDb;
 /// </summary>
 public static class PublishJobTable
 {
-    public static int num = 0;
-
-    public static DataTable PublishJobTable_Excel;
-
-    public static void GetAllPublishedJobTableByHour()
+    public static void GetPublishedJobTable_All()
     {
-        int hours = 30;
-        //判断表格的列是否为空
-        if (PublishJobTable_Excel == null)
+        DateTime excelLastTime = DateTime.MinValue;
+        object obj = SQLiteDbHelper.ExecuteScalar("select max([Excel时间] from job");
+        DataTable excelTable = SQLiteDbHelper.ExecuteDataTable("select Excel文件 from job group by excel文件");      
+        if (obj!=null)
         {
-            PublishJobTable_Excel = new DataTable();
+            excelLastTime = Convert.ToDateTime(obj);
         }
-        ////收集Excel文件名
-        //List<string> excelList = new List<string>();
-        ////判断Excel文件名和时间的列是否存在
-        //if (PublishJobTable_Excel.Columns["Excel文件"]!=null&&PublishJobTable_Excel.Columns["Excel时间"]!=null)
-        //{
-
-        //}
-
         //检索Excel文件
         FileInfo[] files = new DirectoryInfo(@"\\128.1.30.112\Downloads").GetFiles("*.xls");
+        
         foreach (FileInfo file in files)
         {
-            //判断文件名是否存在
-            string excelFileName = Path.GetFileNameWithoutExtension(file.FullName);
-            bool isExists = false;
-            foreach (DataRow row in PublishJobTable_Excel.Rows)
-            {
-                string rowExcelFile = row["Excel文件"].ToString();
-                if (excelFileName.IndexOf(rowExcelFile
-                    , StringComparison.CurrentCultureIgnoreCase) >= 0)
-                {
-                    isExists = true;
-                    break;
-                }
-
-            }
-            if (isExists)
+            //删除超过日期的信息
+            if (file.LastWriteTime < excelLastTime)
             {
                 continue;
             }
-            //指定时间内的Excel文件
-            if (file.LastWriteTime.AddHours(hours) >= DateTime.Now)
-            {
-                //读取Excel里面的作业信息，并且合并到同一个Table里面
-                DataTable dt_excel = GetPublishDataTableFromExcelFile(file.FullName);
-                if (dt_excel != null)
-                {
-                    PublishJobTable_Excel.Merge(dt_excel);
-                }
-            }
-        }
-        //删除超过日期的信息
-        List<DataRow> drList = new List<DataRow>();
-        foreach (DataRow row in PublishJobTable_Excel.Rows)
-        {
-            DateTime dt_row = DateTime.Parse(row["Excel时间"].ToString());
-            if (dt_row.AddHours(hours + 72) < DateTime.Now)
-            {
-                drList.Add(row);
-            }
-        }
-        foreach (DataRow row in drList)
-        {
-            PublishJobTable_Excel.Rows.Remove(row);
-        }
-    }
 
 
-
-    public static void GetAllPublishExcel()
-    {
-        //检索Excel文件
-        FileInfo[] files = new DirectoryInfo(@"\\128.1.30.112\Downloads").GetFiles("*.xls");
-        DataTable excelTable = SQLiteDbHelper.ExecuteDataTable("select Excel文件 from job group by excel文件");
-        foreach (FileInfo file in files)
-        {
             //判断Excel文件名是否存在
             string excelFileName = Path.GetFileNameWithoutExtension(file.FullName);
-            DataRow[] rows = excelTable.Select("[Excel文件]='" + excelFileName+"'");
+            DataRow[] rows = excelTable.Select("[Excel文件]='" + excelFileName + "'");
             //如果不存在，则添加
             if (rows == null || rows.Length == 0)
             {
@@ -104,8 +47,8 @@ public static class PublishJobTable
                 }
             }
         }
-    }
 
+    }
 
     //根据excle的路径把第一个sheel中的内容放入datatable
     private static DataTable ReadExcelToTable(string path)//excel存放的路径
@@ -138,7 +81,7 @@ public static class PublishJobTable
                 return set.Tables[0];
             }
         }
-        catch 
+        catch
         {
             return null;
         }

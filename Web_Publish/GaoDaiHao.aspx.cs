@@ -13,14 +13,14 @@ public partial class GaoDaiHao : System.Web.UI.Page
         +"FROM [Job]";
     protected void Page_Load(object sender, EventArgs e)
     {
-        PublishJobTable.GetAllPublishExcel();
+        PublishJobTable.GetPublishedJobTable_All();
         this.DgvGdh.DataSource = SQLiteDbHelper.ExecuteDataTable(
             sqlSelect+"	ORDER BY [Excel时间] DESC LIMIT 300");
         this.DgvGdh.DataBind();
     }
     protected void ButtonSearch_Click(object sender, EventArgs e)
     {
-        PublishJobTable.GetAllPublishedJobTableByHour();
+        PublishJobTable.GetPublishedJobTable_All();
         string searchTxt = this.TextBoxSearch.Text.Trim();
         if (!string.IsNullOrWhiteSpace(searchTxt))
         {

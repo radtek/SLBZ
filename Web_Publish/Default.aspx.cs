@@ -119,7 +119,7 @@ public partial class PublishProcess : System.Web.UI.Page
         if (CheckBoxGdh.Checked)
         {
             // PublishJobTable.GetAllPublishedJobTableByHour();
-            PublishJobTable.GetAllPublishExcel();
+            PublishJobTable.GetPublishedJobTable_All();
 
             //***读取稿袋号和产品名称
             dt_gdh_cpmc = SQLiteDbHelper.ExecuteDataTable(
