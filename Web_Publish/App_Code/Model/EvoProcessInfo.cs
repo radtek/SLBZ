@@ -47,6 +47,7 @@ public class EvoProcessInfo
     public int ColorNumber;
     /// <summary>
     ///垂直向下偏移晾
+    ///<para>单位:毫米(mm)</para>
     /// </summary>
     public double OffsetY;
     /// <summary>

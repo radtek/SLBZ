@@ -383,7 +383,8 @@ public partial class PublishProcess : System.Web.UI.Page
                     {
                         StringBuilder sb = new StringBuilder();
                         //***咬口错误 
-                        if (pro.OffsetY > pmInfo.Bite || pro.OffsetY < 10)
+                        if (pro.OffsetY > pmInfo.Bite || pro.OffsetY < 10
+                            ||pro.OffsetY<pmInfo.Bite-30)
                         {
                             sb.Append("咬口错误<br />");
                         }
