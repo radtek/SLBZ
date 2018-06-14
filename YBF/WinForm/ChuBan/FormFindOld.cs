@@ -11,6 +11,7 @@ using excelToTable_NPOI;
 using System.IO;
 using System.Diagnostics;
 using YBF.Class.Model;
+using Microsoft.VisualBasic.FileIO;
 
 namespace YBF.WinForm.ChuBan
 {
@@ -291,6 +292,20 @@ namespace YBF.WinForm.ChuBan
             if (e.KeyData==Keys.Enter)
             {
                 this.buttonSearch_Click(this.comboBoxKeyword, new EventArgs());
+            }
+        }
+
+        private void tsmiTransfer_Click(object sender, EventArgs e)
+        {
+            foreach (ListViewItem item in listViewFile.SelectedItems)
+            {
+                string newPath = item.Tag.ToString();
+                //判断是目录还是文件
+                if (File.Exists(newPath))
+                {
+                    FileSystem.CopyFile(newPath
+                        , @"\\128.1.30.111\柯和山\" + Path.GetFileName(newPath));
+                }
             }
         }
 

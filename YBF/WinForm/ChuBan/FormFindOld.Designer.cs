@@ -41,6 +41,7 @@
             this.tsmiOpen = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiGoto = new System.Windows.Forms.ToolStripMenuItem();
             this.comboBoxKeyword = new System.Windows.Forms.ComboBox();
+            this.tsmiTransfer = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -133,21 +134,22 @@
             // 
             this.contextMenuStripListView.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmiOpen,
-            this.tsmiGoto});
+            this.tsmiGoto,
+            this.tsmiTransfer});
             this.contextMenuStripListView.Name = "contextMenuStripListView";
-            this.contextMenuStripListView.Size = new System.Drawing.Size(95, 48);
+            this.contextMenuStripListView.Size = new System.Drawing.Size(153, 92);
             // 
             // tsmiOpen
             // 
             this.tsmiOpen.Name = "tsmiOpen";
-            this.tsmiOpen.Size = new System.Drawing.Size(94, 22);
+            this.tsmiOpen.Size = new System.Drawing.Size(152, 22);
             this.tsmiOpen.Text = "打开";
             this.tsmiOpen.Click += new System.EventHandler(this.tsmiOpen_Click);
             // 
             // tsmiGoto
             // 
             this.tsmiGoto.Name = "tsmiGoto";
-            this.tsmiGoto.Size = new System.Drawing.Size(94, 22);
+            this.tsmiGoto.Size = new System.Drawing.Size(152, 22);
             this.tsmiGoto.Text = "定位";
             this.tsmiGoto.Click += new System.EventHandler(this.tsmiGoto_Click);
             // 
@@ -162,6 +164,13 @@
             this.comboBoxKeyword.Size = new System.Drawing.Size(476, 20);
             this.comboBoxKeyword.TabIndex = 0;
             this.comboBoxKeyword.KeyDown += new System.Windows.Forms.KeyEventHandler(this.comboBoxKeyword_KeyDown);
+            // 
+            // tsmiTransfer
+            // 
+            this.tsmiTransfer.Name = "tsmiTransfer";
+            this.tsmiTransfer.Size = new System.Drawing.Size(152, 22);
+            this.tsmiTransfer.Text = "调取";
+            this.tsmiTransfer.Click += new System.EventHandler(this.tsmiTransfer_Click);
             // 
             // FormFindOld
             // 
@@ -200,6 +209,7 @@
         private System.Windows.Forms.ContextMenuStrip contextMenuStripListView;
         private System.Windows.Forms.ToolStripMenuItem tsmiOpen;
         private System.Windows.Forms.ToolStripMenuItem tsmiGoto;
+        private System.Windows.Forms.ToolStripMenuItem tsmiTransfer;
 
     }
 }
