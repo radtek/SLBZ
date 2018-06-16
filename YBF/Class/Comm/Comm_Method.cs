@@ -38,7 +38,7 @@ namespace YBF.Class.Comm
             {
                 PdfFileList.AddRange(Directory.GetFiles(path, "*.pdf", SearchOption.AllDirectories));
             }
-            PdfFileList.AddRange(Directory.GetFiles(@"\\128.1.30.144\JobData\pdf\已下单PDF", "*.pdf"));
+            PdfFileList.AddRange(Directory.GetFiles(@"\\128.1.30.144\JobData\pdf\已下单PDF", "*.pdf",SearchOption.AllDirectories));
             
         }
 

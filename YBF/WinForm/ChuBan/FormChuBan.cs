@@ -383,7 +383,7 @@ namespace YBF.WinForm.ChuBan
                 foreach (DataRow row in dtAll.Select("备注<>'旧版'"))
                 {
                     DataRow newRow = dt_baobiao.NewRow();
-                    newRow["日期"] = DateTime.Now.ToString("yyyy-MM-dd");
+                    newRow["日期"] = DateTime.Now.AddHours(-6).ToString("yyyy-MM-dd");
                     //newRow["产品名称"] = row["客户简称"].ToString()+row["产品名称"].ToString();
                    // newRow["产品名称"] = pdfFiles.First<string>(pp => pp.Contains(row["产品名称"].ToString()));
                     newRow["制造尺寸"]=row["制造尺寸"].ToString().Replace('x','*');

@@ -22,14 +22,14 @@ namespace YBF.WinForm.ChuBan
 
         private void FormBaoBiao_Load(object sender, EventArgs e)
         {
-            //关闭多余的窗体
-            foreach (Form f in this.ParentForm.MdiChildren)
-            {
-                if (f.Name == this.Name && f.Handle != this.Handle)
-                {
-                    f.Dispose();
-                }
-            }
+            ////关闭多余的窗体
+            //foreach (Form f in this.ParentForm.MdiChildren)
+            //{
+            //    if (f.Name == this.Name && f.Handle != this.Handle)
+            //    {
+            //        f.Dispose();
+            //    }
+            //}
 
 
              string[] topPaths ={@"\\128.1.30.144\historical_data\processes"

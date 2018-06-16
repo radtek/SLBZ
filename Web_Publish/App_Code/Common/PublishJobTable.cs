@@ -14,15 +14,15 @@ public static class PublishJobTable
     public static void GetPublishedJobTable_All()
     {
         DateTime excelLastTime = DateTime.MinValue;
-        object obj = SQLiteDbHelper.ExecuteScalar("select max([Excel时间] from job");
-        DataTable excelTable = SQLiteDbHelper.ExecuteDataTable("select Excel文件 from job group by excel文件");      
-        if (obj!=null)
+        object obj = SQLiteDbHelper.ExecuteScalar("select max([Excel时间]) from job");
+        DataTable excelTable = SQLiteDbHelper.ExecuteDataTable("select Excel文件 from job group by excel文件");
+        if (obj != null)
         {
-            excelLastTime = Convert.ToDateTime(obj);
+            DateTime.TryParse(obj.ToString(), out excelLastTime);
         }
         //检索Excel文件
         FileInfo[] files = new DirectoryInfo(@"\\128.1.30.112\Downloads").GetFiles("*.xls");
-        
+
         foreach (FileInfo file in files)
         {
             //删除超过日期的信息
