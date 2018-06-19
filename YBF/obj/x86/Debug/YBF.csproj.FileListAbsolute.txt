@@ -20,3 +20,4 @@ d:\Users\Documents\Visual Studio 2010\Projects\SLBZ\YBF\bin\Debug\NPOI.OOXML.dll
 d:\Users\Documents\Visual Studio 2010\Projects\SLBZ\YBF\bin\Debug\NPOI.OpenXml4Net.dll
 d:\Users\Documents\Visual Studio 2010\Projects\SLBZ\YBF\bin\Debug\NPOI.OpenXmlFormats.dll
 d:\Users\Documents\Visual Studio 2010\Projects\SLBZ\YBF\bin\Debug\YBF.exe.config
+d:\users\documents\visual studio 2010\Projects\SLBZ\YBF\obj\x86\Debug\YBF.csprojResolveAssemblyReference.cache

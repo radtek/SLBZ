@@ -41,9 +41,9 @@ namespace YBF.WinForm.ChuBan
             foreach (string excelFile in
                 Directory.EnumerateFiles(Path_Excel, "*.xls"))
             {
-                //符合要求的文件，并且是24小时以内的
+                //符合要求的文件
                 if (regex.IsMatch(excelFile)
-                    && File.GetCreationTime(excelFile) >= DateTime.Now.AddHours(-48))
+                    && File.GetCreationTime(excelFile) >= DateTime.Now.AddMonths(-1))
                 {
                     excelFileList.Add(new ExcelFileInfo(excelFile));
                 }
@@ -60,6 +60,11 @@ namespace YBF.WinForm.ChuBan
                         excelFileList[j] = tempExcel;
                     }
                 }
+            }
+            //保留最近的15项
+            if (excelFileList.Count>15)
+            {
+                excelFileList.RemoveRange(14, excelFileList.Count - 15);
             }
             //将排序好的显示在treeView中
             foreach (ExcelFileInfo excelFile in excelFileList)
