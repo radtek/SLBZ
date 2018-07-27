@@ -86,51 +86,61 @@ namespace YBF.WinForm.ChuBan
                 return;
             }
             DataTable dt = Comm_Method.Table_Excel.Clone();
-            foreach (DataRow row in Comm_Method.Table_Excel.Rows)
-            {
-                string cpmc = row[keyWordColumnName].ToString();
+            dt.Columns.RemoveAt(dt.Columns.Count - 1);
+            dt.Columns.RemoveAt(dt.Columns.Count - 1);
+            dt.Columns.RemoveAt(dt.Columns.Count - 1);
 
-                if (IsEachContain(cpmc, kw))
+            if (checkBoxSize.Checked)
+            {
+
+            }
+            else
+            {
+                foreach (DataRow row in Comm_Method.Table_Excel.Rows)
+                {
+                    string cpmc = row[keyWordColumnName].ToString();
+
+                    if (IsEachContain(cpmc, kw))
+                    {
+                        DataRow newRow = dt.NewRow();
+                        foreach (DataColumn dc in dt.Columns)
+                        {
+                            newRow[dc] = row[dc.ColumnName];
+                        }
+                        dt.Rows.Add(newRow);
+                    }
+                }
+
+                if (dt.Rows.Count > 0 && Job != null)
                 {
                     DataRow newRow = dt.NewRow();
-                    foreach (DataColumn dc in dt.Columns)
-                    {
-                        newRow[dc] = row[dc.ColumnName];
-                    }
-                    dt.Rows.Add(newRow);
+                    newRow["产  品   名   称"] = Job.Khjc + Job.Cpmc;
+                    newRow["  制造尺寸"] = Job.Zzcc.Replace("x", "*");
+                    newRow["下料尺寸"] = Job.Mzcc;
+                    newRow["输出颜色"] = "普:" + Job.Ss1 + " 专:" + Job.Ss2;
+                    newRow["印刷机台"] = Job.Sjjt;
+                    dt.Rows.InsertAt(newRow, 0);
                 }
-            }
-            dt.Columns.RemoveAt(dt.Columns.Count - 1);
-            dt.Columns.RemoveAt(dt.Columns.Count - 1);
-            dt.Columns.RemoveAt(dt.Columns.Count - 1);
+                this.dgvExcel.DataSource = dt;
 
-            if (dt.Rows.Count > 0 && Job != null)
-            {
-                DataRow newRow = dt.NewRow();
-                newRow["产  品   名   称"] = Job.Khjc + Job.Cpmc;
-                newRow["  制造尺寸"] = Job.Zzcc.Replace("x", "*");
-                newRow["下料尺寸"] = Job.Mzcc;
-                newRow["输出颜色"] = "普:" + Job.Ss1 + " 专:" + Job.Ss2;
-                newRow["印刷机台"] = Job.Sjjt;
-                dt.Rows.InsertAt(newRow, 0);
-            }
-            this.dgvExcel.DataSource = dt;
-
-            //ListView
-            this.listViewFile.Items.Clear();
-            foreach (string file in Comm_Method.PdfFileList.FindAll(f => IsEachContain(Path.GetFileNameWithoutExtension(f), kw)))
-            {
-                FileInfo fileInfo = new FileInfo(file);
-                if (fileInfo.Exists)
+                //ListView
+                this.listViewFile.Items.Clear();
+                foreach (string file in Comm_Method.PdfFileList.FindAll(f => IsEachContain(Path.GetFileNameWithoutExtension(f), kw)))
                 {
-                    ListViewItem item = this.listViewFile.Items.Add(fileInfo.Name);
-                    item.SubItems.Add(fileInfo.LastWriteTime.ToString());
-                    item.SubItems.Add(Math.Round(1.0 * fileInfo.Length / 1024 / 1024, 2) + "MB");
-                    item.SubItems.Add(fileInfo.DirectoryName);
-                    item.Tag = file;
+                    FileInfo fileInfo = new FileInfo(file);
+                    if (fileInfo.Exists)
+                    {
+                        ListViewItem item = this.listViewFile.Items.Add(fileInfo.Name);
+                        item.SubItems.Add(fileInfo.LastWriteTime.ToString());
+                        item.SubItems.Add(Math.Round(1.0 * fileInfo.Length / 1024 / 1024, 2) + "MB");
+                        item.SubItems.Add(fileInfo.DirectoryName);
+                        item.Tag = file;
+                    }
+
                 }
-                
             }
+            
+           
             KeyWordList_Add(kw);
             this.comboBoxKeyword.Items.Clear();
             this.comboBoxKeyword.Items.AddRange(this.KeyWordList.ToArray());

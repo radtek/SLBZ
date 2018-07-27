@@ -125,9 +125,13 @@ namespace YBF.WinForm.Ywj
                     FileSystem.CopyFile(ywj.Path + "\\" + item.Text
                         , Path_CopyTo + "\\" + item.Text
                         ,UIOption.AllDialogs,UICancelOption.DoNothing);
-                    FileSystem.MoveFile(ywj.Path + "\\" + item.Text
-                        , ywj.PathMove + "\\" + item.Text
-                        , UIOption.AllDialogs, UICancelOption.DoNothing);
+                    if (File.Exists(Path_CopyTo + "\\" + item.Text))
+                    {
+                        FileSystem.MoveFile(ywj.Path + "\\" + item.Text
+                       , ywj.PathMove + "\\" + item.Text
+                       , UIOption.AllDialogs, UICancelOption.DoNothing);
+                    }
+                   
                 }
                 InitListView();
                 if (!Directory.Exists(Path_CopyTo+"\\ok"))

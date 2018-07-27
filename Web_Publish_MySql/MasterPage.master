@@ -16,11 +16,12 @@
             <Items>
                 <asp:MenuItem Text="出版记录" Value="出版记录" NavigateUrl="~/Default.aspx">
                 </asp:MenuItem>
-                <asp:MenuItem Text="稿袋号" Value="稿袋号" NavigateUrl="http://128.1.30.144/GaoDaiHao.aspx">
+                <asp:MenuItem Text="稿袋号" Value="稿袋号" NavigateUrl="~/GaoDaiHao.aspx">
                 </asp:MenuItem>
                 <asp:MenuItem Text="_小机" Value="_小机_" NavigateUrl="http://128.1.130.31/">
                 </asp:MenuItem>
-                <asp:MenuItem Text="_大机" Value="大机" NavigateUrl="http://128.1.30.144/">
+                <asp:MenuItem Text="_大机" Value="大机" 
+                    Selected="True" NavigateUrl="http://128.1.30.144/">
                 </asp:MenuItem>
             </Items>
         </asp:Menu>

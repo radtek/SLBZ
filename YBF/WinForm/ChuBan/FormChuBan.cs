@@ -62,9 +62,10 @@ namespace YBF.WinForm.ChuBan
                 }
             }
             //保留最近的15项
-            if (excelFileList.Count>15)
+            int lastNum = 15;
+            if (excelFileList.Count > lastNum)
             {
-                excelFileList.RemoveRange(14, excelFileList.Count - 15);
+                excelFileList.RemoveRange(lastNum, excelFileList.Count - lastNum);
             }
             //将排序好的显示在treeView中
             foreach (ExcelFileInfo excelFile in excelFileList)
@@ -399,7 +400,7 @@ namespace YBF.WinForm.ChuBan
                     newRow["备注"] = "";
 
                     //***确认产品名称
-                    string cpmc = row["产品名称"].ToString().Replace('*', 'X');
+                    string cpmc = row["产品名称"].ToString().Replace('*', 'x');
                     bool cunzai = false;
                     foreach (string pdffile in pdfFiles)
                     {

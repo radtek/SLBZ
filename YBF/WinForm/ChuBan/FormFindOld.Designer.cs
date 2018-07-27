@@ -40,8 +40,9 @@
             this.contextMenuStripListView = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tsmiOpen = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiGoto = new System.Windows.Forms.ToolStripMenuItem();
-            this.comboBoxKeyword = new System.Windows.Forms.ComboBox();
             this.tsmiTransfer = new System.Windows.Forms.ToolStripMenuItem();
+            this.comboBoxKeyword = new System.Windows.Forms.ComboBox();
+            this.checkBoxSize = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -52,7 +53,7 @@
             // 
             // buttonSearch
             // 
-            this.buttonSearch.Location = new System.Drawing.Point(483, 7);
+            this.buttonSearch.Location = new System.Drawing.Point(513, 6);
             this.buttonSearch.Name = "buttonSearch";
             this.buttonSearch.Size = new System.Drawing.Size(75, 23);
             this.buttonSearch.TabIndex = 1;
@@ -76,7 +77,7 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.listViewFile);
-            this.splitContainer1.Size = new System.Drawing.Size(557, 434);
+            this.splitContainer1.Size = new System.Drawing.Size(646, 434);
             this.splitContainer1.SplitterDistance = 255;
             this.splitContainer1.SplitterWidth = 8;
             this.splitContainer1.TabIndex = 2;
@@ -93,7 +94,7 @@
             this.dgvExcel.Name = "dgvExcel";
             this.dgvExcel.RowHeadersVisible = false;
             this.dgvExcel.RowTemplate.Height = 23;
-            this.dgvExcel.Size = new System.Drawing.Size(557, 255);
+            this.dgvExcel.Size = new System.Drawing.Size(646, 255);
             this.dgvExcel.TabIndex = 0;
             // 
             // listViewFile
@@ -107,7 +108,7 @@
             this.listViewFile.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listViewFile.Location = new System.Drawing.Point(0, 0);
             this.listViewFile.Name = "listViewFile";
-            this.listViewFile.Size = new System.Drawing.Size(557, 171);
+            this.listViewFile.Size = new System.Drawing.Size(646, 171);
             this.listViewFile.TabIndex = 0;
             this.listViewFile.UseCompatibleStateImageBehavior = false;
             this.listViewFile.View = System.Windows.Forms.View.Details;
@@ -137,21 +138,28 @@
             this.tsmiGoto,
             this.tsmiTransfer});
             this.contextMenuStripListView.Name = "contextMenuStripListView";
-            this.contextMenuStripListView.Size = new System.Drawing.Size(153, 92);
+            this.contextMenuStripListView.Size = new System.Drawing.Size(95, 70);
             // 
             // tsmiOpen
             // 
             this.tsmiOpen.Name = "tsmiOpen";
-            this.tsmiOpen.Size = new System.Drawing.Size(152, 22);
+            this.tsmiOpen.Size = new System.Drawing.Size(94, 22);
             this.tsmiOpen.Text = "打开";
             this.tsmiOpen.Click += new System.EventHandler(this.tsmiOpen_Click);
             // 
             // tsmiGoto
             // 
             this.tsmiGoto.Name = "tsmiGoto";
-            this.tsmiGoto.Size = new System.Drawing.Size(152, 22);
+            this.tsmiGoto.Size = new System.Drawing.Size(94, 22);
             this.tsmiGoto.Text = "定位";
             this.tsmiGoto.Click += new System.EventHandler(this.tsmiGoto_Click);
+            // 
+            // tsmiTransfer
+            // 
+            this.tsmiTransfer.Name = "tsmiTransfer";
+            this.tsmiTransfer.Size = new System.Drawing.Size(94, 22);
+            this.tsmiTransfer.Text = "调取";
+            this.tsmiTransfer.Click += new System.EventHandler(this.tsmiTransfer_Click);
             // 
             // comboBoxKeyword
             // 
@@ -161,22 +169,26 @@
             this.comboBoxKeyword.Location = new System.Drawing.Point(1, 9);
             this.comboBoxKeyword.MaxDropDownItems = 20;
             this.comboBoxKeyword.Name = "comboBoxKeyword";
-            this.comboBoxKeyword.Size = new System.Drawing.Size(476, 20);
+            this.comboBoxKeyword.Size = new System.Drawing.Size(506, 20);
             this.comboBoxKeyword.TabIndex = 0;
             this.comboBoxKeyword.KeyDown += new System.Windows.Forms.KeyEventHandler(this.comboBoxKeyword_KeyDown);
             // 
-            // tsmiTransfer
+            // checkBoxSize
             // 
-            this.tsmiTransfer.Name = "tsmiTransfer";
-            this.tsmiTransfer.Size = new System.Drawing.Size(152, 22);
-            this.tsmiTransfer.Text = "调取";
-            this.tsmiTransfer.Click += new System.EventHandler(this.tsmiTransfer_Click);
+            this.checkBoxSize.AutoSize = true;
+            this.checkBoxSize.Location = new System.Drawing.Point(594, 11);
+            this.checkBoxSize.Name = "checkBoxSize";
+            this.checkBoxSize.Size = new System.Drawing.Size(60, 16);
+            this.checkBoxSize.TabIndex = 3;
+            this.checkBoxSize.Text = "按尺寸";
+            this.checkBoxSize.UseVisualStyleBackColor = true;
             // 
             // FormFindOld
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(563, 473);
+            this.ClientSize = new System.Drawing.Size(652, 473);
+            this.Controls.Add(this.checkBoxSize);
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.buttonSearch);
             this.Controls.Add(this.comboBoxKeyword);
@@ -192,6 +204,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvExcel)).EndInit();
             this.contextMenuStripListView.ResumeLayout(false);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -210,6 +223,7 @@
         private System.Windows.Forms.ToolStripMenuItem tsmiOpen;
         private System.Windows.Forms.ToolStripMenuItem tsmiGoto;
         private System.Windows.Forms.ToolStripMenuItem tsmiTransfer;
+        private System.Windows.Forms.CheckBox checkBoxSize;
 
     }
 }

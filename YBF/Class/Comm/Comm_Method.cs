@@ -33,12 +33,12 @@ namespace YBF.Class.Comm
             PdfFileList.Clear();
             string[] OldFilePaths = { "F:\\CTP己输出2009-2014"
                                         , "G:\\CTP己输出2015备份" 
-                                    ,@"\\128.1.30.144\JobData\pdf\已下单PDF\PDF-ok"};
+                                    ,@"\\128.1.30.144\JobData\pdf\已下单PDF"};
             foreach (string path in OldFilePaths)
             {
                 PdfFileList.AddRange(Directory.GetFiles(path, "*.pdf", SearchOption.AllDirectories));
             }
-            PdfFileList.AddRange(Directory.GetFiles(@"\\128.1.30.144\JobData\pdf\已下单PDF", "*.pdf",SearchOption.AllDirectories));
+            //PdfFileList.AddRange(Directory.GetFiles(@"\\128.1.30.144\JobData\pdf\已下单PDF", "*.pdf",SearchOption.AllDirectories));
             
         }
 
