@@ -73,7 +73,7 @@ namespace YBF.WinForm.Ywj
                 + "'" + this.textBoxName.Text.Trim() + "',"
                 + "'" + this.textBoxYwjPath.Text.Trim() + "',"
                 + "'" + this.textBoxYwjPathMove.Text.Trim() + "');";
-                if (SQLiteList.YbfSQLite.ExecuteNonQuery(sqlStr) > 0)
+                if (SQLiteList.Ybf.ExecuteNonQuery(sqlStr) > 0)
                 {
                     this.DialogResult = DialogResult.OK;
                 }
@@ -85,7 +85,7 @@ namespace YBF.WinForm.Ywj
                + "[Path]='" + this.textBoxYwjPath.Text.Trim() + "',"
                + "[PathMove]='" + this.textBoxYwjPathMove.Text.Trim() + "'"
                + " WHERE ID=" + this.ID;
-                if (SQLiteList.YbfSQLite.ExecuteNonQuery(sqlStr) > 0)
+                if (SQLiteList.Ybf.ExecuteNonQuery(sqlStr) > 0)
                 {
                     this.DialogResult = DialogResult.OK;
                 }
@@ -98,7 +98,7 @@ namespace YBF.WinForm.Ywj
         {
             if (this.ID>0)
             {
-                DataTable dt = SQLiteList.YbfSQLite.ExecuteDataTable
+                DataTable dt = SQLiteList.Ybf.ExecuteDataTable
                     ("select * from ywj where ID=" + this.ID);
                 this.textBoxName.Text = dt.Rows[0]["Name"].ToString();
                 this.textBoxYwjPath.Text = dt.Rows[0]["Path"].ToString();

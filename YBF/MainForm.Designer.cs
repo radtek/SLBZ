@@ -35,6 +35,7 @@
             this.tsmiOldPlant = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiMovePublishedPdf = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiWindows = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiProcess = new System.Windows.Forms.ToolStripMenuItem();
             this.fileSystemWatcher1 = new System.IO.FileSystemWatcher();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher1)).BeginInit();
@@ -47,6 +48,7 @@
             this.tsmiChuban,
             this.tsmiOldPlant,
             this.tsmiMovePublishedPdf,
+            this.tsmiProcess,
             this.tsmiWindows});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
@@ -89,6 +91,13 @@
             this.tsmiWindows.Text = "窗口";
             this.tsmiWindows.DropDownOpening += new System.EventHandler(this.tsmiWindows_DropDownOpening);
             // 
+            // tsmiProcess
+            // 
+            this.tsmiProcess.Name = "tsmiProcess";
+            this.tsmiProcess.Size = new System.Drawing.Size(65, 20);
+            this.tsmiProcess.Text = "出版记录";
+            this.tsmiProcess.Click += new System.EventHandler(this.tsmiProcess_Click);
+            // 
             // fileSystemWatcher1
             // 
             this.fileSystemWatcher1.EnableRaisingEvents = true;
@@ -123,6 +132,7 @@
         private System.Windows.Forms.ToolStripMenuItem tsmiWindows;
         private System.Windows.Forms.ToolStripMenuItem tsmiOldPlant;
         private System.IO.FileSystemWatcher fileSystemWatcher1;
+        private System.Windows.Forms.ToolStripMenuItem tsmiProcess;
     }
 }
 

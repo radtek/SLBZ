@@ -8,18 +8,13 @@ namespace HandeJobManager.DAL
    public static class SQLiteList
     {
        /// <summary>
-       /// 主数据
+       /// 印版房数据库
        /// </summary>
-       public static SQLiteDbHelper YbfSQLite;
+       public static SQLiteDbHelper Ybf;
        /// <summary>
-       /// 副数据库列表
-       /// (主要用于在需要的时候读取)
+       /// 作业备份数据库
        /// </summary>
-       public static List<SQLiteDbHelper> ViceSQliteList;
-       /// <summary>
-       /// 备份的数据库列表
-       /// (主要用于在需要的时候读取)
-       /// </summary>
-       public static List<SQLiteDbHelper> BackupSQliteList;
+       public static SQLiteDbHelper BackupProcess;
+      
     }
 }

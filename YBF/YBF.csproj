@@ -79,6 +79,26 @@
     <Compile Include="Class\Model\Ywj.cs" />
     <Compile Include="Class\SQLiteDbHelper.cs" />
     <Compile Include="Class\SQLiteList.cs" />
+    <Compile Include="HanDe_ClassLibrary\Adobe\Acrobat\Acrobat8.cs" />
+    <Compile Include="HanDe_ClassLibrary\DataProcess\PrintingToDeviceOutJtk.cs" />
+    <Compile Include="HanDe_ClassLibrary\DataProcess\ProcessCreationInfo.cs" />
+    <Compile Include="HanDe_ClassLibrary\Log.cs" />
+    <Compile Include="HanDe_ClassLibrary\Path\GradingPath.cs" />
+    <Compile Include="HanDe_ClassLibrary\Preps\JobFile.cs" />
+    <Compile Include="HanDe_ClassLibrary\Preps\JobFileMakeUp.cs" />
+    <Compile Include="HanDe_ClassLibrary\Preps\PjtfFile.cs" />
+    <Compile Include="HanDe_ClassLibrary\Preps\PrepsConfig.cs" />
+    <Compile Include="HanDe_ClassLibrary\Preps\TplFile.cs" />
+    <Compile Include="HanDe_ClassLibrary\PrinergyEvo\EvoPrintingToDeviceProcessInfo.cs" />
+    <Compile Include="HanDe_ClassLibrary\PrinergyEvo\EvoProcessInfo.cs" />
+    <Compile Include="HanDe_ClassLibrary\PrinergyEvo\ProcessInfo.cs" />
+    <Compile Include="HanDe_ClassLibrary\Process\ProcessCommon.cs" />
+    <Compile Include="HanDe_ClassLibrary\SizeBox\CREO_TrimBox_MilliMetre.cs" />
+    <Compile Include="HanDe_ClassLibrary\SizeBox\CREO_TrimBox_Point.cs" />
+    <Compile Include="HanDe_ClassLibrary\Unit\ConversionConstant.cs" />
+    <Compile Include="HanDe_ClassLibrary\Unit\MilliMetre_Unit.cs" />
+    <Compile Include="HanDe_ClassLibrary\Unit\Point_Unit.cs" />
+    <Compile Include="HanDe_ClassLibrary\Unit\Unit.cs" />
     <Compile Include="WinForm\ChuBan\FormBaoBiao.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -96,6 +116,12 @@
     </Compile>
     <Compile Include="WinForm\ChuBan\FormFindOld.Designer.cs">
       <DependentUpon>FormFindOld.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WinForm\FormPublishProcess.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WinForm\FormPublishProcess.designer.cs">
+      <DependentUpon>FormPublishProcess.cs</DependentUpon>
     </Compile>
     <Compile Include="WinForm\Ywj\FormYwj.cs">
       <SubType>Form</SubType>
@@ -137,6 +163,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="WinForm\ChuBan\FormFindOld.resx">
       <DependentUpon>FormFindOld.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WinForm\FormPublishProcess.resx">
+      <DependentUpon>FormPublishProcess.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="WinForm\Ywj\FormYwj.resx">
       <DependentUpon>FormYwj.cs</DependentUpon>

@@ -16,12 +16,12 @@ namespace HandeJobManager.DAL
     /// <summary>
     /// 本类为SQLite数据库帮助静态类,使用时只需直接调用即可,无需实例化
     /// </summary>
-    public  class SQLiteDbHelper
+    public class SQLiteDbHelper
     {
         /// <summary>
         /// 连接字符串
         /// </summary>
-        private string ConnectionString ;
+        private string ConnectionString;
         /// <summary>
         /// 获取连接字符串
         /// </summary>
@@ -59,12 +59,12 @@ namespace HandeJobManager.DAL
         /// <param customerName="ConnectionString">连接字符串</param>
         /// <param customerName="cmd">SqlCommand命令</param>
         /// <returns>所受影响的行数</returns>
-        public  int ExecuteNonQuery(string commandText)
+        public int ExecuteNonQuery(string commandText)
         {
             int result = 0;
             if (ConnectionString == null || ConnectionString.Length == 0)
                 throw new ArgumentNullException("ConnectionString");
-            using (SQLiteConnection con = new SQLiteConnection(ConnectionString,true))
+            using (SQLiteConnection con = new SQLiteConnection(ConnectionString, true))
             {
                 SQLiteCommand cmd = new SQLiteCommand(commandText);
                 SQLiteTransaction trans = null;
@@ -90,7 +90,7 @@ namespace HandeJobManager.DAL
         /// <param customerName="commandText">执行语句或存储过程名</param>
         /// <param customerName="commandType">执行类型</param>
         /// <returns>所受影响的行数</returns>
-        public  int ExecuteNonQuery(string commandText, CommandType commandType)
+        public int ExecuteNonQuery(string commandText, CommandType commandType)
         {
             int result = 0;
             if (ConnectionString == null || ConnectionString.Length == 0)
@@ -98,7 +98,7 @@ namespace HandeJobManager.DAL
             if (commandText == null || commandText.Length == 0)
                 throw new ArgumentNullException("commandText");
             SQLiteCommand cmd = new SQLiteCommand();
-            using (SQLiteConnection con = new SQLiteConnection(ConnectionString,true))
+            using (SQLiteConnection con = new SQLiteConnection(ConnectionString, true))
             {
                 SQLiteTransaction trans = null;
                 PrepareCommand(cmd, con, ref trans, true, commandType, commandText);
@@ -124,7 +124,7 @@ namespace HandeJobManager.DAL
         /// <param customerName="commandType">执行类型</param>
         /// <param customerName="cmdParms">SQL参数对象</param>
         /// <returns>所受影响的行数</returns>
-        public  int ExecuteNonQuery(string commandText, CommandType commandType, params SQLiteParameter[] cmdParms)
+        public int ExecuteNonQuery(string commandText, CommandType commandType, params SQLiteParameter[] cmdParms)
         {
             int result = 0;
             if (ConnectionString == null || ConnectionString.Length == 0)
@@ -133,7 +133,7 @@ namespace HandeJobManager.DAL
                 throw new ArgumentNullException("commandText");
 
             SQLiteCommand cmd = new SQLiteCommand();
-            using (SQLiteConnection con = new SQLiteConnection(ConnectionString,true))
+            using (SQLiteConnection con = new SQLiteConnection(ConnectionString, true))
             {
                 SQLiteTransaction trans = null;
                 PrepareCommand(cmd, con, ref trans, true, commandType, commandText);
@@ -159,12 +159,12 @@ namespace HandeJobManager.DAL
         /// <param customerName="ConnectionString">连接字符串</param>
         /// <param customerName="cmd">SqlCommand对象</param>
         /// <returns>查询所得的第1行第1列数据</returns>
-        public  object ExecuteScalar(string commandText)
+        public object ExecuteScalar(string commandText)
         {
             object result = 0;
             if (ConnectionString == null || ConnectionString.Length == 0)
                 throw new ArgumentNullException("ConnectionString");
-            using (SQLiteConnection con = new SQLiteConnection(ConnectionString,true))
+            using (SQLiteConnection con = new SQLiteConnection(ConnectionString, true))
             {
                 SQLiteTransaction trans = null;
                 SQLiteCommand cmd = new SQLiteCommand(commandText);
@@ -190,7 +190,7 @@ namespace HandeJobManager.DAL
         /// <param customerName="commandText">执行语句或存储过程名</param>
         /// <param customerName="commandType">执行类型</param>
         /// <returns>查询所得的第1行第1列数据</returns>
-        public  object ExecuteScalar(string commandText, CommandType commandType)
+        public object ExecuteScalar(string commandText, CommandType commandType)
         {
             object result = 0;
             if (ConnectionString == null || ConnectionString.Length == 0)
@@ -198,7 +198,7 @@ namespace HandeJobManager.DAL
             if (commandText == null || commandText.Length == 0)
                 throw new ArgumentNullException("commandText");
             SQLiteCommand cmd = new SQLiteCommand();
-            using (SQLiteConnection con = new SQLiteConnection(ConnectionString,true))
+            using (SQLiteConnection con = new SQLiteConnection(ConnectionString, true))
             {
                 SQLiteTransaction trans = null;
                 PrepareCommand(cmd, con, ref trans, true, commandType, commandText);
@@ -224,7 +224,7 @@ namespace HandeJobManager.DAL
         /// <param customerName="commandType">执行类型</param>
         /// <param customerName="cmdParms">SQL参数对象</param>
         /// <returns>查询所得的第1行第1列数据</returns>
-        public  object ExecuteScalar(string commandText, CommandType commandType, params SQLiteParameter[] cmdParms)
+        public object ExecuteScalar(string commandText, CommandType commandType, params SQLiteParameter[] cmdParms)
         {
             object result = 0;
             if (ConnectionString == null || ConnectionString.Length == 0)
@@ -233,7 +233,7 @@ namespace HandeJobManager.DAL
                 throw new ArgumentNullException("commandText");
 
             SQLiteCommand cmd = new SQLiteCommand();
-            using (SQLiteConnection con = new SQLiteConnection(ConnectionString,true))
+            using (SQLiteConnection con = new SQLiteConnection(ConnectionString, true))
             {
                 SQLiteTransaction trans = null;
                 PrepareCommand(cmd, con, ref trans, true, commandType, commandText);
@@ -259,13 +259,13 @@ namespace HandeJobManager.DAL
         /// <param customerName="ConnectionString">连接字符串</param>
         /// <param customerName="cmd">SqlCommand对象</param>
         /// <returns>SqlDataReader对象</returns>
-        public  SQLiteDataReader ExecuteReader(string commandText)
+        public SQLiteDataReader ExecuteReader(string commandText)
         {
             SQLiteDataReader reader = null;
             if (ConnectionString == null || ConnectionString.Length == 0)
                 throw new ArgumentNullException("ConnectionString");
 
-            SQLiteConnection con = new SQLiteConnection(ConnectionString,true);
+            SQLiteConnection con = new SQLiteConnection(ConnectionString, true);
             SQLiteTransaction trans = null;
             SQLiteCommand cmd = new SQLiteCommand(commandText);
             PrepareCommand(cmd, con, ref trans, false, cmd.CommandType, cmd.CommandText);
@@ -287,7 +287,7 @@ namespace HandeJobManager.DAL
         /// <param customerName="commandText">执行语句或存储过程名</param>
         /// <param customerName="commandType">执行类型</param>
         /// <returns>SqlDataReader对象</returns>
-        public  SQLiteDataReader ExecuteReader(string commandText, CommandType commandType)
+        public SQLiteDataReader ExecuteReader(string commandText, CommandType commandType)
         {
             SQLiteDataReader reader = null;
             if (ConnectionString == null || ConnectionString.Length == 0)
@@ -295,7 +295,7 @@ namespace HandeJobManager.DAL
             if (commandText == null || commandText.Length == 0)
                 throw new ArgumentNullException("commandText");
 
-            SQLiteConnection con = new SQLiteConnection(ConnectionString,true);
+            SQLiteConnection con = new SQLiteConnection(ConnectionString, true);
             SQLiteCommand cmd = new SQLiteCommand();
             SQLiteTransaction trans = null;
             PrepareCommand(cmd, con, ref trans, false, commandType, commandText);
@@ -318,7 +318,7 @@ namespace HandeJobManager.DAL
         /// <param customerName="commandType">执行类型</param>
         /// <param customerName="cmdParms">SQL参数对象</param>
         /// <returns>SqlDataReader对象</returns>
-        public  DbDataReader ExecuteReader(string commandText, CommandType commandType, params SQLiteParameter[] cmdParms)
+        public DbDataReader ExecuteReader(string commandText, CommandType commandType, params SQLiteParameter[] cmdParms)
         {
             DbDataReader reader = null;
             if (ConnectionString == null || ConnectionString.Length == 0)
@@ -326,7 +326,7 @@ namespace HandeJobManager.DAL
             if (commandText == null || commandText.Length == 0)
                 throw new ArgumentNullException("commandText");
 
-            SQLiteConnection con = new SQLiteConnection(ConnectionString,true);
+            SQLiteConnection con = new SQLiteConnection(ConnectionString, true);
             SQLiteCommand cmd = new SQLiteCommand();
             SQLiteTransaction trans = null;
             PrepareCommand(cmd, con, ref trans, false, commandType, commandText, cmdParms);
@@ -349,7 +349,7 @@ namespace HandeJobManager.DAL
         /// </summary>
         /// <param customerName="sql">要执行的SQL语句 </param>
         /// <returns> </returns>
-        public  DataTable ExecuteDataTable(string sql)
+        public DataTable ExecuteDataTable(string sql)
         {
             return ExecuteDataTable(sql, CommandType.Text, null);
         }
@@ -359,7 +359,7 @@ namespace HandeJobManager.DAL
         /// <param customerName="sql">要执行的SQL语句 </param>
         /// <param customerName="commandType">要执行的查询类型（存储过程、SQL文本） </param>
         /// <returns> </returns>
-        public  DataTable ExecuteDataTable(string sql, CommandType commandType)
+        public DataTable ExecuteDataTable(string sql, CommandType commandType)
         {
             return ExecuteDataTable(sql, commandType, null);
         }
@@ -370,10 +370,10 @@ namespace HandeJobManager.DAL
         /// <param customerName="commandType">要执行的查询类型（存储过程、SQL文本） </param>
         /// <param customerName="parameters">参数数组 </param>
         /// <returns> </returns>
-        public  DataTable ExecuteDataTable(string sql, CommandType commandType, SQLiteParameter[] parameters)
+        public DataTable ExecuteDataTable(string sql, CommandType commandType, SQLiteParameter[] parameters)
         {
             DataTable data = new DataTable();
-            using (SQLiteConnection connection = new SQLiteConnection(ConnectionString,true))
+            using (SQLiteConnection connection = new SQLiteConnection(ConnectionString, true))
             {
                 using (SQLiteCommand command = new SQLiteCommand(sql, connection))
                 {
@@ -403,10 +403,10 @@ namespace HandeJobManager.DAL
         /// <param customerName="ConnectionString">连接字符串</param>
         /// <param customerName="cmd">SqlCommand对象</param>
         /// <returns>DataSet对象</returns>
-        public  DataSet ExecuteDataSet(string commandText)
+        public DataSet ExecuteDataSet(string commandText)
         {
             DataSet ds = new DataSet();
-            SQLiteConnection con = new SQLiteConnection(ConnectionString,true);
+            SQLiteConnection con = new SQLiteConnection(ConnectionString, true);
             SQLiteTransaction trans = null;
             SQLiteCommand cmd = new SQLiteCommand(commandText);
             PrepareCommand(cmd, con, ref trans, false, cmd.CommandType, cmd.CommandText);
@@ -439,14 +439,14 @@ namespace HandeJobManager.DAL
         /// <param customerName="commandText">执行语句或存储过程名</param>
         /// <param customerName="commandType">执行类型</param>
         /// <returns>DataSet对象</returns>
-        public  DataSet ExecuteDataSet(string commandText, CommandType commandType)
+        public DataSet ExecuteDataSet(string commandText, CommandType commandType)
         {
             if (ConnectionString == null || ConnectionString.Length == 0)
                 throw new ArgumentNullException("ConnectionString");
             if (commandText == null || commandText.Length == 0)
                 throw new ArgumentNullException("commandText");
             DataSet ds = new DataSet();
-            SQLiteConnection con = new SQLiteConnection(ConnectionString,true);
+            SQLiteConnection con = new SQLiteConnection(ConnectionString, true);
             SQLiteCommand cmd = new SQLiteCommand();
             SQLiteTransaction trans = null;
             PrepareCommand(cmd, con, ref trans, false, commandType, commandText);
@@ -480,14 +480,14 @@ namespace HandeJobManager.DAL
         /// <param customerName="commandType">执行类型</param>
         /// <param customerName="cmdParms">SQL参数对象</param>
         /// <returns>DataSet对象</returns>
-        public  DataSet ExecuteDataSet(string commandText, CommandType commandType, params SQLiteParameter[] cmdParms)
+        public DataSet ExecuteDataSet(string commandText, CommandType commandType, params SQLiteParameter[] cmdParms)
         {
             if (ConnectionString == null || ConnectionString.Length == 0)
                 throw new ArgumentNullException("ConnectionString");
             if (commandText == null || commandText.Length == 0)
                 throw new ArgumentNullException("commandText");
             DataSet ds = new DataSet();
-            SQLiteConnection con = new SQLiteConnection(ConnectionString,true);
+            SQLiteConnection con = new SQLiteConnection(ConnectionString, true);
             SQLiteCommand cmd = new SQLiteCommand();
             SQLiteTransaction trans = null;
             PrepareCommand(cmd, con, ref trans, false, commandType, commandText, cmdParms);
@@ -580,7 +580,7 @@ namespace HandeJobManager.DAL
         /// <param customerName="cmdType">SQL字符串执行类型</param>
         /// <param customerName="cmdText">SQL Text</param>
         /// <param customerName="cmdParms">SQLiteParameters to use in the command</param>
-        private  void PrepareCommand(SQLiteCommand cmd, SQLiteConnection conn, ref SQLiteTransaction trans, bool useTrans, CommandType cmdType, string cmdText, params SQLiteParameter[] cmdParms)
+        private void PrepareCommand(SQLiteCommand cmd, SQLiteConnection conn, ref SQLiteTransaction trans, bool useTrans, CommandType cmdType, string cmdText, params SQLiteParameter[] cmdParms)
         {
 
             if (conn.State != ConnectionState.Open)
@@ -610,9 +610,9 @@ namespace HandeJobManager.DAL
         /// 执行压缩数据库
         /// </summary>
         /// <returns>压缩数据库</returns>
-        public  void ExecuteZip()
+        public void ExecuteZip()
         {
-            using (SQLiteConnection connection = new SQLiteConnection(ConnectionString,true))
+            using (SQLiteConnection connection = new SQLiteConnection(ConnectionString, true))
             {
                 using (SQLiteCommand cmd = new SQLiteCommand("VACUUM", connection))
                 {
@@ -638,9 +638,9 @@ namespace HandeJobManager.DAL
         /// 执行多条SQL语句，实现数据库事务。    
         /// </summary>    
         /// <param customerName="SQLStringList">多条SQL语句</param>        
-        public  bool ExecuteSqlTran(List<string> SQLStringList)
+        public bool ExecuteSqlTran(List<string> SQLStringList)
         {
-            if (SQLStringList.Count<=0)
+            if (SQLStringList.Count <= 0)
             {
                 return false;
             }
@@ -672,7 +672,7 @@ namespace HandeJobManager.DAL
             SQLiteTransaction tran = null;//事务
             try
             {
-                conn = new SQLiteConnection(ConnectionString,true);
+                conn = new SQLiteConnection(ConnectionString, true);
                 conn.Open();
                 tran = conn.BeginTransaction();//先实例SqlTransaction类，使用这个事务使用的是con 这个连接，使用BeginTransaction这个方法来开始执行这个事务
                 SQLiteCommand cmd = new SQLiteCommand();

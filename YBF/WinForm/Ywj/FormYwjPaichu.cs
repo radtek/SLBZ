@@ -64,7 +64,7 @@ namespace YBF.WinForm.Ywj
 
         private void Reload()
         {
-            SQLiteConnection myConn = new SQLiteConnection(SQLiteList.YbfSQLite.GetConnectionString, true);
+            SQLiteConnection myConn = new SQLiteConnection(SQLiteList.Ybf.GetConnectionString, true);
             da = new SQLiteDataAdapter("select * from Ywj_PaiChu  ", myConn);
             ds = new DataSet();
             da.Fill(ds);

@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using YBF.WinForm.Ywj;
 using YBF.WinForm.ChuBan;
 using System.IO;
+using HanDe_ToolBox_Form;
 
 namespace YBF
 {
@@ -31,10 +32,15 @@ namespace YBF
         FormChuBan chuban = null;
         private void tsmiChuban_Click(object sender, EventArgs e)
         {
-            chuban = new FormChuBan();
-            chuban.WindowState = FormWindowState.Maximized;
-            chuban.MdiParent = this;
+            if (chuban == null
+               || chuban.IsDisposed)
+            {
+                chuban = new FormChuBan();
+                chuban.MdiParent = this;
+            }
             chuban.Show();
+            chuban.WindowState = FormWindowState.Maximized;
+            chuban.Focus();
         }
 
         private void tsmiMovePublishedPdf_Click(object sender, EventArgs e)
@@ -145,10 +151,15 @@ namespace YBF
         FormFindOld findOld=null;
         private void tsmiOldPlant_Click(object sender, EventArgs e)
         {
-            findOld = new FormFindOld(null);
-            findOld.WindowState = FormWindowState.Maximized;
-            findOld.MdiParent = this;
+            if (findOld == null
+                || findOld.IsDisposed)
+            {
+                findOld = new FormFindOld(null);
+                findOld.MdiParent = this;
+            }
             findOld.Show();
+            findOld.WindowState = FormWindowState.Maximized;
+            findOld.Focus();
         }
 
         private void fileSystemWatcher_Changed(object sender, FileSystemEventArgs e)
@@ -184,6 +195,21 @@ namespace YBF
                 watcher.NotifyFilter = NotifyFilters.LastWrite | NotifyFilters.FileName;
             }
             return watcher;
+        }
+
+        //统计出版记录
+        FormPublishProcess publishProcess = null;
+        private void tsmiProcess_Click(object sender, EventArgs e)
+        {
+            if (publishProcess == null
+                || publishProcess.IsDisposed)
+            {
+                publishProcess = new FormPublishProcess();
+                publishProcess.MdiParent = this;
+            }
+            publishProcess.Show();
+            publishProcess.WindowState = FormWindowState.Maximized;
+            publishProcess.Focus();
         }
     }
 }

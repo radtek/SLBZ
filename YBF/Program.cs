@@ -14,9 +14,10 @@ namespace YBF
         [STAThread]
         static void Main()
         {
-            SQLiteList.YbfSQLite=new SQLiteDbHelper(
+            SQLiteList.Ybf=new SQLiteDbHelper(
                 @"Data Source=" + Application.StartupPath + "\\Data\\ybf.db;Version=3;");
-
+            SQLiteList.BackupProcess = new SQLiteDbHelper(
+                @"Data Source=\\128.1.30.144\Backup_ev08382-01\processes\BackupIndex.db;Version=3;");
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new MainForm());

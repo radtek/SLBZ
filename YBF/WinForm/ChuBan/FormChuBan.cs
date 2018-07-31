@@ -79,14 +79,14 @@ namespace YBF.WinForm.ChuBan
 
         private void FormChuBan_Load(object sender, EventArgs e)
         {
-            //关闭多余的窗体
-            foreach (Form f in this.ParentForm.MdiChildren)
-            {
-                if (f.Name == this.Name && f.Handle != this.Handle)
-                {
-                    f.Dispose();
-                }
-            }
+            ////关闭多余的窗体
+            //foreach (Form f in this.ParentForm.MdiChildren)
+            //{
+            //    if (f.Name == this.Name && f.Handle != this.Handle)
+            //    {
+            //        f.Dispose();
+            //    }
+            //}
 
             dic_jitai.Add("高宝162", "904");
             dic_jitai.Add("罗兰9047", "904");
@@ -339,12 +339,11 @@ namespace YBF.WinForm.ChuBan
                 job.Ss1 = row.Cells["色数1"].Value.ToString();
                 job.Ss2 = row.Cells["色数2"].Value.ToString();
 
+                
                 findOld = new FormFindOld(job);
                 findOld.WindowState = FormWindowState.Maximized;
                 findOld.MdiParent = this.ParentForm;
                 findOld.Show();
-
-               
             }
         }
 

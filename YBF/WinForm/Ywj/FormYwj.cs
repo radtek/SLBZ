@@ -39,12 +39,12 @@ namespace YBF.WinForm.Ywj
         private void InitListView()
         {
             this.listViewYwj.Items.Clear();
-            DataTable dt = SQLiteList.YbfSQLite.ExecuteDataTable("select * from Ywj");
+            DataTable dt = SQLiteList.Ybf.ExecuteDataTable("select * from Ywj");
             if (dt.Rows.Count > 0)
             {
                 //排除名单
                 List<string> pcmdList = new List<string>();
-                foreach (DataRow md in SQLiteList.YbfSQLite.ExecuteDataTable("select * from Ywj_PaiChu").Rows)
+                foreach (DataRow md in SQLiteList.Ybf.ExecuteDataTable("select * from Ywj_PaiChu").Rows)
                 {
                     pcmdList.Add(md["FileFullName"].ToString());
                 }
@@ -158,7 +158,7 @@ namespace YBF.WinForm.Ywj
                         "INSERT INTO [Ywj_PaiChu]([FileFullName])VALUES('" 
                         + fileFullName + "');");
                 }
-                if (SQLiteList.YbfSQLite.ExecuteSqlTran(sqlList))
+                if (SQLiteList.Ybf.ExecuteSqlTran(sqlList))
                 {
                     InitListView();
                 }

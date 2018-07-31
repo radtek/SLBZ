@@ -23,7 +23,7 @@ namespace YBF.WinForm
         private void FormYwj_Load(object sender, EventArgs e)
         {
             this.dgv_ywj.Rows.Clear();
-            DataTable dt = SQLiteList.YbfSQLite.ExecuteDataTable("select * from ywj");
+            DataTable dt = SQLiteList.Ybf.ExecuteDataTable("select * from ywj");
             
             foreach (DataRow dr in dt.Rows)
             {
