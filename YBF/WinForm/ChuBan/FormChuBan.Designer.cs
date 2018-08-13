@@ -58,11 +58,14 @@
             this.dgvJob.AllowUserToAddRows = false;
             this.dgvJob.AllowUserToDeleteRows = false;
             this.dgvJob.AllowUserToResizeRows = false;
+            this.dgvJob.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvJob.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dgvJob.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvJob.ContextMenuStrip = this.contextMenuStripJob;
             this.dgvJob.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvJob.Location = new System.Drawing.Point(0, 0);
             this.dgvJob.Name = "dgvJob";
+            this.dgvJob.ReadOnly = true;
             this.dgvJob.RowHeadersVisible = false;
             this.dgvJob.RowTemplate.Height = 23;
             this.dgvJob.Size = new System.Drawing.Size(510, 503);

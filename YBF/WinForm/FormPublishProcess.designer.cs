@@ -47,6 +47,8 @@
             // DgvShow
             // 
             this.DgvShow.AllowUserToAddRows = false;
+            this.DgvShow.AllowUserToDeleteRows = false;
+            this.DgvShow.AllowUserToResizeRows = false;
             this.DgvShow.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
@@ -56,6 +58,7 @@
             this.DgvShow.Location = new System.Drawing.Point(3, 41);
             this.DgvShow.Name = "DgvShow";
             this.DgvShow.ReadOnly = true;
+            this.DgvShow.RowHeadersVisible = false;
             this.DgvShow.RowTemplate.Height = 23;
             this.DgvShow.Size = new System.Drawing.Size(811, 531);
             this.DgvShow.TabIndex = 4;

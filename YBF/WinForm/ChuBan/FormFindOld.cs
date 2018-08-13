@@ -12,6 +12,7 @@ using System.IO;
 using System.Diagnostics;
 using YBF.Class.Model;
 using Microsoft.VisualBasic.FileIO;
+using System.Text.RegularExpressions;
 
 namespace YBF.WinForm.ChuBan
 {
@@ -67,16 +68,46 @@ namespace YBF.WinForm.ChuBan
             {
                 this.comboBoxKeyword.Text = KeyWordList[0];
             }
+
+            //**根据客户智能生产搜索关键字
+            if (Job!=null)
+            {
+                Regex regex = null;
+                switch (Job.Khjc)
+                {
+                    case"浙江泵业":
+                        regex = new Regex("\\d{8}");
+                        break;
+                    case "中新科技集团":
+                        regex = new Regex("\\d{13}");                        
+                        break;
+                    default:
+                        break;
+                }
+                if (regex!=null&&regex.IsMatch(Job.Cpmc))
+                {
+                    this.comboBoxKeyword.Text = regex.Match(Job.Cpmc).Value;
+                }
+                else
+                {
+                    this.comboBoxKeyword.Text = Job.Cpmc.TrimEnd("-AB面".ToCharArray());
+                }
+                
+            }
             comboBoxKeyword.Items.Clear();
             comboBoxKeyword.Items.AddRange(KeyWordList.ToArray());
-
-
-
             Comm_Method.Init_Tabel_Excel();
             Comm_Method.Init_PdfFileList();
+            SearchOldFile();
         }
 
         private void buttonSearch_Click(object sender, EventArgs e)
+        {
+            SearchOldFile();
+            
+        }
+
+        private void SearchOldFile()
         {
             Comm_Method.Init_Tabel_Excel();
             this.dgvExcel.DataSource = null;
@@ -139,8 +170,8 @@ namespace YBF.WinForm.ChuBan
 
                 }
             }
-            
-           
+
+
             KeyWordList_Add(kw);
             this.comboBoxKeyword.Items.Clear();
             this.comboBoxKeyword.Items.AddRange(this.KeyWordList.ToArray());

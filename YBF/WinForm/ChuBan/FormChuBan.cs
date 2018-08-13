@@ -163,7 +163,7 @@ namespace YBF.WinForm.ChuBan
             this.dgvJob.DataSource = dtAll;
 
             this.dgvJob.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
-            this.dgvJob.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+            this.dgvJob.RowsDefaultCellStyle.WrapMode = DataGridViewTriState.True;
         }
 
         private void AddToDgv(List<DataTable> dtList)
@@ -194,7 +194,7 @@ namespace YBF.WinForm.ChuBan
                 }
             }
             
-            this.dgvJob.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dgvJob.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvJob.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
         }
 

@@ -276,6 +276,21 @@ public class EvoProcessInfo
         }
         return FileNameString.ToString().Trim();
     }
+    /// <summary>
+    /// 获取出版文件列表(完整路径)的字符串形式
+    /// </summary>
+    /// <returns></returns>
+    public string GetFileDirectoryNameString()
+    {
+        StringBuilder FileNameString = new StringBuilder();
+        foreach (string fileName in this.FileList)
+        {
+            FileNameString.AppendLine(Path.GetDirectoryName(fileName));
+            break;
+        }
+        return FileNameString.ToString().Trim();
+    }
+
     
     public string GetColorString()
     {

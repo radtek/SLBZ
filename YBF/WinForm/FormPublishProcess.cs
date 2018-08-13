@@ -80,7 +80,7 @@ namespace HanDe_ToolBox_Form
             this.DgvShow.DataSource = dt;
             this.DgvShow.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
             this.DgvShow.RowsDefaultCellStyle.WrapMode = DataGridViewTriState.True;
-            this.DgvShow.Sort(this.DgvShow.Columns["提交时间"], ListSortDirection.Ascending);
+            this.DgvShow.Sort(this.DgvShow.Columns["完成时间"], ListSortDirection.Descending);
             MessageBox.Show("查找完毕\n历时：" + (DateTime.Now - dt_s).ToString("hh\\:mm\\:ss"));
             //}
             //catch (Exception ex)
@@ -294,6 +294,7 @@ namespace HanDe_ToolBox_Form
             EvoProcessInfo pro = new EvoProcessInfo(guid);
             StringBuilder sb = new StringBuilder();
             sb.AppendLine("文件名:\n" + pro.GetFileNameString());
+            sb.AppendLine("\n文件所在目录:\n" + pro.GetFileDirectoryNameString());           
             sb.AppendLine("\n板材:" + pro.Plant);
             sb.AppendLine("\n咬口:" + pro.OffsetY);
             sb.AppendLine("\n颜色:\n" + pro.GetColorString());

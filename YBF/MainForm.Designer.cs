@@ -34,8 +34,8 @@
             this.tsmiChuban = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiOldPlant = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiMovePublishedPdf = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmiWindows = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiProcess = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiWindows = new System.Windows.Forms.ToolStripMenuItem();
             this.fileSystemWatcher1 = new System.IO.FileSystemWatcher();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher1)).BeginInit();
@@ -52,7 +52,7 @@
             this.tsmiWindows});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(609, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(745, 24);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -84,19 +84,19 @@
             this.tsmiMovePublishedPdf.Text = "一键移动出版文件";
             this.tsmiMovePublishedPdf.Click += new System.EventHandler(this.tsmiMovePublishedPdf_Click);
             // 
-            // tsmiWindows
-            // 
-            this.tsmiWindows.Name = "tsmiWindows";
-            this.tsmiWindows.Size = new System.Drawing.Size(41, 20);
-            this.tsmiWindows.Text = "窗口";
-            this.tsmiWindows.DropDownOpening += new System.EventHandler(this.tsmiWindows_DropDownOpening);
-            // 
             // tsmiProcess
             // 
             this.tsmiProcess.Name = "tsmiProcess";
             this.tsmiProcess.Size = new System.Drawing.Size(65, 20);
             this.tsmiProcess.Text = "出版记录";
             this.tsmiProcess.Click += new System.EventHandler(this.tsmiProcess_Click);
+            // 
+            // tsmiWindows
+            // 
+            this.tsmiWindows.Name = "tsmiWindows";
+            this.tsmiWindows.Size = new System.Drawing.Size(41, 20);
+            this.tsmiWindows.Text = "窗口";
+            this.tsmiWindows.DropDownOpening += new System.EventHandler(this.tsmiWindows_DropDownOpening);
             // 
             // fileSystemWatcher1
             // 
@@ -107,7 +107,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(609, 487);
+            this.ClientSize = new System.Drawing.Size(745, 487);
             this.Controls.Add(this.menuStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.IsMdiContainer = true;

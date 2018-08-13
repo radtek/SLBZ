@@ -84,6 +84,7 @@ namespace YBF.WinForm.Ywj
                     }
                 }
             }
+            this.listViewYwj.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
         }
 
         private void tsmiSetting_Click(object sender, EventArgs e)
