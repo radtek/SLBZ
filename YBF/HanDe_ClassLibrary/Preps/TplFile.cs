@@ -208,7 +208,7 @@ namespace HanDe_ClassLibrary.PrinergyEvoFile.Preps
             }
             catch (Exception ex)
             {
-                Log.WriteLog(ex.ToString());
+                Log.WriteErrorLog(ex.ToString());
                 return false;
             }
             return true;

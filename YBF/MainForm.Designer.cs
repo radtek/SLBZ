@@ -35,10 +35,10 @@
             this.tsmiOldPlant = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiMovePublishedPdf = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiProcess = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiSavePdf = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiToolBox = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiWindows = new System.Windows.Forms.ToolStripMenuItem();
-            this.fileSystemWatcher1 = new System.IO.FileSystemWatcher();
             this.menuStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher1)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -49,6 +49,8 @@
             this.tsmiOldPlant,
             this.tsmiMovePublishedPdf,
             this.tsmiProcess,
+            this.tsmiSavePdf,
+            this.tsmiToolBox,
             this.tsmiWindows});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
@@ -91,17 +93,26 @@
             this.tsmiProcess.Text = "出版记录";
             this.tsmiProcess.Click += new System.EventHandler(this.tsmiProcess_Click);
             // 
+            // tsmiSavePdf
+            // 
+            this.tsmiSavePdf.Name = "tsmiSavePdf";
+            this.tsmiSavePdf.Size = new System.Drawing.Size(47, 20);
+            this.tsmiSavePdf.Text = "转PDF";
+            this.tsmiSavePdf.Click += new System.EventHandler(this.tsmiSavePdf_Click);
+            // 
+            // tsmiToolBox
+            // 
+            this.tsmiToolBox.Name = "tsmiToolBox";
+            this.tsmiToolBox.Size = new System.Drawing.Size(53, 20);
+            this.tsmiToolBox.Text = "工具箱";
+            this.tsmiToolBox.Click += new System.EventHandler(this.tsmiToolBox_Click);
+            // 
             // tsmiWindows
             // 
             this.tsmiWindows.Name = "tsmiWindows";
             this.tsmiWindows.Size = new System.Drawing.Size(41, 20);
             this.tsmiWindows.Text = "窗口";
             this.tsmiWindows.DropDownOpening += new System.EventHandler(this.tsmiWindows_DropDownOpening);
-            // 
-            // fileSystemWatcher1
-            // 
-            this.fileSystemWatcher1.EnableRaisingEvents = true;
-            this.fileSystemWatcher1.SynchronizingObject = this;
             // 
             // MainForm
             // 
@@ -114,10 +125,10 @@
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "MainForm";
             this.Text = "森林包装印版房作业管理系统";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -131,8 +142,9 @@
         private System.Windows.Forms.ToolStripMenuItem tsmiMovePublishedPdf;
         private System.Windows.Forms.ToolStripMenuItem tsmiWindows;
         private System.Windows.Forms.ToolStripMenuItem tsmiOldPlant;
-        private System.IO.FileSystemWatcher fileSystemWatcher1;
         private System.Windows.Forms.ToolStripMenuItem tsmiProcess;
+        private System.Windows.Forms.ToolStripMenuItem tsmiSavePdf;
+        private System.Windows.Forms.ToolStripMenuItem tsmiToolBox;
     }
 }
 

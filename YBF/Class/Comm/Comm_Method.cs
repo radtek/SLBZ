@@ -7,12 +7,20 @@ using System.Windows.Forms;
 using System.Data.OleDb;
 using System.IO;
 using excelToTable_NPOI;
+using YBF.Properties;
+using System.Management;
+using System.Diagnostics;
+using Microsoft.VisualBasic.FileIO;
 
 namespace YBF.Class.Comm
 {
     //常用的通用类
     public static class Comm_Method
     {
+        /// <summary>
+        /// Illustrator文件列表
+        /// </summary>
+        public static List<string> AiFileList = new List<string>();
         public static DataTable Table_Excel = new DataTable();
         private static DateTime LastTime_Excel = DateTime.MinValue;
         public static List<string> PdfFileList = new List<string>();
@@ -36,7 +44,7 @@ namespace YBF.Class.Comm
                                     ,@"\\128.1.30.144\JobData\pdf\已下单PDF"};
             foreach (string path in OldFilePaths)
             {
-                PdfFileList.AddRange(Directory.GetFiles(path, "*.pdf", SearchOption.AllDirectories));
+                PdfFileList.AddRange(Directory.GetFiles(path, "*.pdf", System.IO.SearchOption.AllDirectories));
             }
             //PdfFileList.AddRange(Directory.GetFiles(@"\\128.1.30.144\JobData\pdf\已下单PDF", "*.pdf",SearchOption.AllDirectories));
             
@@ -88,6 +96,7 @@ namespace YBF.Class.Comm
             DataTable dt = Comm_Method.ReadExcelToTable(excelFileFullName);
             if (dt == null || dt.Rows.Count == 0)
             {
+                FileSystem.DeleteFile(excelFileFullName);
                 return dt;
             }
             //****删除空白行******
@@ -293,5 +302,88 @@ namespace YBF.Class.Comm
             return new string(array);
         }
         #endregion
+
+
+
+        /// <summary>
+        /// 获取进程的命令行参数
+        /// </summary>
+        /// <param name="processName">进程名(包含'.exe')</param>
+        /// <returns></returns>
+        public static List<string> GetCommandLines(string processName)
+        {
+            List<string> results = new List<string>();
+
+            string wmiQuery = string.Format("select CommandLine from Win32_Process where Name='{0}'", processName);
+
+            using (ManagementObjectSearcher searcher = new ManagementObjectSearcher(wmiQuery))
+            {
+
+                using (ManagementObjectCollection retObjectCollection = searcher.Get())
+                {
+
+                    foreach (ManagementObject retObject in retObjectCollection)
+                    {
+
+                        results.Add((string)retObject["CommandLine"]);
+
+                    }
+
+                }
+
+            }
+            return results;
+        }
+
+        /// <summary>  
+        /// 执行DOS命令，返回DOS命令的输出  
+        /// </summary>  
+        /// <param name="dosCommand">dos命令</param>  
+        /// <returns>返回DOS命令的输出</returns>  
+        public static string ExecuteCom(string command, bool isReturn)
+        {
+            Process p = new Process();
+            string strOuput = "";
+            try
+            {
+                //设置要启动的应用程序
+                p.StartInfo.FileName = "cmd.exe";
+                //是否使用操作系统shell启动
+                p.StartInfo.UseShellExecute = false;
+                // 接受来自调用程序的输入信息
+                p.StartInfo.RedirectStandardInput = true;
+                //输出信息
+                p.StartInfo.RedirectStandardOutput = true;
+                // 输出错误
+                p.StartInfo.RedirectStandardError = true;
+                //不显示程序窗口
+                p.StartInfo.CreateNoWindow = true;
+                //启动程序
+                p.Start();
+
+                //向cmd窗口发送输入信息
+                p.StandardInput.WriteLine(command + "&exit");
+
+                //是否需要返回信息
+                if (!isReturn)
+                {
+                    return "";
+                }
+
+                p.StandardInput.AutoFlush = true;
+
+                //获取输出信息
+                strOuput = p.StandardOutput.ReadToEnd();
+                
+                //等待程序执行完退出进程
+                p.WaitForExit();
+            }
+            finally
+            {
+                p.Close();
+            }
+
+            return strOuput;
+        }
     }
 }

@@ -10,11 +10,23 @@ using YBF.WinForm.Ywj;
 using YBF.WinForm.ChuBan;
 using System.IO;
 using HanDe_ToolBox_Form;
+using System.Threading;
+using YBF.Properties;
+using YBF.Class.Comm;
+using HanDe_ClassLibrary.LogCommon;
+using System.Management;
+using System.Diagnostics;
+using YBF.WinForm.Tool;
+using Microsoft.VisualBasic.FileIO;
 
 namespace YBF
 {
     public partial class MainForm : Form
     {
+        private bool IsClose;
+
+        private Thread thSavePdf;//进程
+
         public MainForm()
         {
             InitializeComponent();
@@ -70,7 +82,7 @@ namespace YBF
                             string fileFullName = allLines[i];
                             if (Path.GetDirectoryName(fileFullName)
                                 .Equals(@"\\ev08382-01\JobData\pdf\已下单PDF"
-                                ,StringComparison.CurrentCultureIgnoreCase)
+                                , StringComparison.CurrentCultureIgnoreCase)
                                 && File.Exists(fileFullName))
                             {
                                 string toPath = Path.GetDirectoryName(fileFullName)
@@ -148,7 +160,7 @@ namespace YBF
             }
         }
 
-        FormFindOld findOld=null;
+        FormFindOld findOld = null;
         private void tsmiOldPlant_Click(object sender, EventArgs e)
         {
             if (findOld == null
@@ -172,17 +184,31 @@ namespace YBF
                     break;
                 case WatcherChangeTypes.Renamed:
                     break;
-            }   
+            }
         }
 
 
-        FileSystemWatcher watcher_2009_2015 = null;
-        FileSystemWatcher watcher_2016_2018 = null;
-        FileSystemWatcher watcher_PDFok = null;
+        //FileSystemWatcher watcher_2009_2015 = null;
+        //FileSystemWatcher watcher_2016_2018 = null;
+        //FileSystemWatcher watcher_PDFok = null;
         private void MainForm_Load(object sender, EventArgs e)
         {
-            
+
+            this.thSavePdf = new Thread(new ThreadStart(SavePdf_Illustrator));
+            thSavePdf.Start();
+
+            // InitTimer();
         }
+
+        //private void InitTimer()
+        //{
+        //    this.timer1 = new System.Windows.Forms.Timer();
+        //    this.timer1.Interval = 1000;
+        //    this.timer1.Tick += new EventHandler(timer1_Tick);
+        //    this.timer1.Enabled = false;
+        //}
+
+
 
         private FileSystemWatcher GetFileSystemWatcher(string path)
         {
@@ -211,5 +237,155 @@ namespace YBF
             publishProcess.WindowState = FormWindowState.Maximized;
             publishProcess.Focus();
         }
+
+        private void tsmiSavePdf_Click(object sender, EventArgs e)
+        {
+            FormSavePdf savePdf = new FormSavePdf();
+            savePdf.WindowState = FormWindowState.Maximized;
+            savePdf.MdiParent = this;
+            savePdf.Show();
+        }
+
+        //private void timer1_Tick(object sender, EventArgs e)
+        //{
+        //    if (Comm_Method.AiFileList.Count > 0)
+        //    {
+        //        this.timer1.Stop();
+        //        this.thSavePdf = new Thread(new ThreadStart(SavePdf_Illustrator));
+        //        thSavePdf.Start();
+        //    }
+
+        //}
+        private void SavePdf_Illustrator()
+        {
+
+            while (true)
+            {
+                if (IsClose)
+                {
+                    break;
+                }
+                try
+                {
+                    while (Comm_Method.AiFileList.Count == 0 && !this.IsClose)
+                    {
+                        Thread.Sleep(5000);
+                    }
+
+                    // this.timer1.Stop();
+
+                    //判断Adobe Illustrator CS6 (64 Bit)是否运行
+                    string aiexe = @"C:\Program Files\Adobe\AdobeIllustratorCS6_x64\Support Files\Contents\Windows\Illustrator.exe";
+                    if (File.Exists(aiexe))
+                    {
+                        if (Process.GetProcessesByName("Illustrator").Length == 0)
+                        {
+                            Comm_Method.ExecuteCom(string.Format("\"{0}\"", aiexe), false);
+                        }
+                        Illustrator.ApplicationClass app = new Illustrator.ApplicationClass();
+                                               
+                        while (Comm_Method.AiFileList.Count > 0)
+                        {
+                            while (app.Documents.Count > 0 && !this.IsClose)
+                            {
+                                Thread.Sleep(5000);
+                            }
+                            string aiFile = Comm_Method.AiFileList[0];
+                            app.DoJavaScript(Resources.AutoSavePdf.Replace
+                                ("*文件名*", aiFile.Replace('\\', '/')));
+                            Comm_Method.AiFileList.RemoveAt(0);
+                            if (File.Exists(@"\\128.1.30.144\HotFolders\RefineToPDF\"
+                                + Path.GetFileNameWithoutExtension(aiFile) + ".pdf"))
+                            {
+                                string okDir = Path.GetDirectoryName(aiFile) + "\\ok\\";
+                                if (!Directory.Exists(okDir))
+                                {
+                                    Directory.CreateDirectory(okDir);
+                                }
+                                FileSystem.MoveFile(aiFile, okDir + Path.GetFileName(aiFile)
+                      , UIOption.AllDialogs, UICancelOption.DoNothing);
+                            }
+                        }
+                    }
+                }
+                catch
+                { }
+                finally
+                {
+                    Thread.Sleep(5000);
+                }
+
+            }
+        }
+
+
+
+        private static double UsingProcess(Process pro)
+        {
+            try
+            {
+                //平局值
+                double avg = 0;
+                //统计的总次数
+                int numAll = 3;
+                double[] numArray = new double[numAll];
+                //间隔时间（毫秒）
+                int interval = 700;
+                //上次记录的CPU时间
+                var prevCpuTime = TimeSpan.Zero;
+                //记录次数
+                int numRec = 0;
+                while (numRec < numAll)
+                {
+                    //当前时间
+                    var curTime = pro.TotalProcessorTime;
+                    //间隔时间内的CPU运行时间除以逻辑CPU数量
+                    var value = (curTime - prevCpuTime).TotalMilliseconds / interval / Environment.ProcessorCount * 100;
+                    numArray[numRec++] = value;
+                    prevCpuTime = curTime;
+
+                    Thread.Sleep(interval);
+                }
+                //总和
+                double sum = 0;
+                foreach (double item in numArray)
+                {
+                    sum += item;
+                }
+                avg = sum / numAll;
+                return avg;
+            }
+            catch
+            {
+                return -1;
+            }
+        }
+
+
+        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (Comm_Method.AiFileList.Count > 0
+                && MessageBox.Show("后台列表还有数据。\n\n确定要退出吗？", "退出?"
+                , MessageBoxButtons.OKCancel, MessageBoxIcon.Question) != DialogResult.OK)
+            {
+                e.Cancel = true;
+
+            }
+            if (!e.Cancel)
+            {
+                this.IsClose = true;
+                Application.ExitThread();
+            }
+        }
+
+        private void tsmiToolBox_Click(object sender, EventArgs e)
+        {
+            new FormToolAll().ShowDialog();
+        }
+
+
+
+
+
     }
 }

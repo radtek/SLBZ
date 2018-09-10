@@ -3,7 +3,6 @@ d:\users\documents\visual studio 2010\Projects\SLBZ\YBF\obj\x86\Debug\YBF.Proper
 d:\users\documents\visual studio 2010\Projects\SLBZ\YBF\obj\x86\Debug\YBF.csproj.GenerateResource.Cache
 d:\users\documents\visual studio 2010\Projects\SLBZ\YBF\bin\Debug\YBF.exe
 d:\users\documents\visual studio 2010\Projects\SLBZ\YBF\bin\Debug\YBF.pdb
-d:\users\documents\visual studio 2010\Projects\SLBZ\YBF\bin\Debug\System.Data.SQLite.dll
 d:\users\documents\visual studio 2010\Projects\SLBZ\YBF\obj\x86\Debug\YBF.exe
 d:\users\documents\visual studio 2010\Projects\SLBZ\YBF\obj\x86\Debug\YBF.pdb
 d:\users\documents\visual studio 2010\Projects\SLBZ\YBF\obj\x86\Debug\YBF.WinForm.Ywj.FormYwj.resources
@@ -22,3 +21,9 @@ d:\Users\Documents\Visual Studio 2010\Projects\SLBZ\YBF\bin\Debug\NPOI.OpenXmlFo
 d:\Users\Documents\Visual Studio 2010\Projects\SLBZ\YBF\bin\Debug\YBF.exe.config
 d:\users\documents\visual studio 2010\Projects\SLBZ\YBF\obj\x86\Debug\YBF.csprojResolveAssemblyReference.cache
 d:\Users\Documents\Visual Studio 2010\Projects\SLBZ\YBF\obj\x86\Debug\HanDe_ToolBox_Form.FormPublishProcess.resources
+d:\users\documents\visual studio 2010\Projects\SLBZ\YBF\obj\x86\Debug\Interop.Illustrator.dll
+d:\users\documents\visual studio 2010\Projects\SLBZ\YBF\obj\x86\Debug\YBF.csproj.ResolveComReference.cache
+d:\users\documents\visual studio 2010\Projects\SLBZ\YBF\obj\x86\Debug\YBF.WinForm.Ywj.FormSavePdf.resources
+d:\Users\Documents\Visual Studio 2010\Projects\SLBZ\YBF\bin\Debug\Interop.Illustrator.dll
+d:\Users\Documents\Visual Studio 2010\Projects\SLBZ\YBF\bin\Debug\System.Data.SQLite.dll
+d:\Users\Documents\Visual Studio 2010\Projects\SLBZ\YBF\obj\x86\Debug\YBF.WinForm.Tool.FormToolAll.resources

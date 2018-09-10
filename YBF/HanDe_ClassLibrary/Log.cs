@@ -12,9 +12,10 @@ namespace HanDe_ClassLibrary.LogCommon
     /// </summary>
     public static class Log
     {
-        private static readonly string logFile = "Log\\"+DateTime.Now.ToString("yyyyMMdd")+"_Log.xml";
+       // private static readonly string logFile = "Log\\" + DateTime.Now.ToString("yyyyMMdd") + "_Log.xml";
+        private static readonly string logFile = "Log\\Log.xml";
 
-        public static void WriteLog(string Mess)
+        public static void WriteErrorLog(string Mess)
         {
             //建立文件夹
             if (!Directory.Exists("Log"))

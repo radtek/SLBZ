@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 using HandeJobManager.DAL;
+using System.Diagnostics;
 
 namespace YBF
 {
@@ -14,6 +15,8 @@ namespace YBF
         [STAThread]
         static void Main()
         {
+           
+
             SQLiteList.Ybf=new SQLiteDbHelper(
                 @"Data Source=" + Application.StartupPath + "\\Data\\ybf.db;Version=3;");
             SQLiteList.BackupProcess = new SQLiteDbHelper(

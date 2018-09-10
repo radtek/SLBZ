@@ -72,19 +72,9 @@ namespace YBF.WinForm.ChuBan
             //**根据客户智能生产搜索关键字
             if (Job!=null)
             {
-                Regex regex = null;
-                switch (Job.Khjc)
-                {
-                    case"浙江泵业":
-                        regex = new Regex("\\d{8}");
-                        break;
-                    case "中新科技集团":
-                        regex = new Regex("\\d{13}");                        
-                        break;
-                    default:
-                        break;
-                }
-                if (regex!=null&&regex.IsMatch(Job.Cpmc))
+                Regex regex = new Regex("\\d{8,}");
+                
+                if (regex.IsMatch(Job.Cpmc))
                 {
                     this.comboBoxKeyword.Text = regex.Match(Job.Cpmc).Value;
                 }
@@ -274,19 +264,57 @@ namespace YBF.WinForm.ChuBan
 
         private string GetString(string str)
         {
-            return str.Replace("\\", "-").Replace("/", "-").Replace("*", "x");
+            return Comm_Method.ToDBC(str.Replace("\\", "-")
+                .Replace("/", "-").Replace("*", "x").ToLower());
         }
-        private string GetString1(string str)
+        private string GetStringRemoveSpace(string str)
         {
-            return Comm_Method.ToDBC(GetString(str).Replace(" ", "").ToLower());
+            return GetString(str).Replace(" ", "");
         }
 
 
         private bool IsEachContain(string str1, string str2)
         {
-            str1 = GetString1(str1);
-            str2 = GetString1(str2);
-            return str1.IndexOf(str2) > -1 || str2.IndexOf(str1) > -1;
+            string str11 = GetStringRemoveSpace(str1);
+            string str22 = GetStringRemoveSpace(str2);
+
+            return (str11.IndexOf(str22) > -1 || str22.IndexOf(str11) > -1);
+            
+            
+        }
+        //private bool IsEachContain(string str1, string str2)
+        //{
+        //    string str11 = GetStringRemoveSpace(str1);
+        //    string str22 = GetStringRemoveSpace(str2);
+
+        //    if (str11.IndexOf(str22) > -1 || str22.IndexOf(str11) > -1)
+        //    {
+        //        return true;
+        //    }
+        //    else
+        //    {
+        //        str1 = GetString(str1);
+        //        str2 = GetString(str2);
+
+        //        return IsEachContain(str1.Split(' '), str2)
+        //            || IsEachContain(str2.Split(' '), str1);
+        //    }
+        //}
+
+        private bool IsEachContain(string[] kwArray, string str)
+        {
+            foreach (string kw in kwArray)
+            {
+                if (string.IsNullOrWhiteSpace(kw))
+                {
+                    continue;
+                }
+                if (!IsEachContain(kw,str))
+                {
+                    return false;
+                }
+            }
+            return true;
         }
 
         private void FormFindOld_FormClosed(object sender, FormClosedEventArgs e)

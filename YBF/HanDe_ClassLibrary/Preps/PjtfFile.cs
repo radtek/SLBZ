@@ -69,7 +69,7 @@ namespace HanDe_ClassLibrary.PrinergyEvoFile.Preps
             }
             catch (Exception ex)
             {
-                Log.WriteLog(ex.ToString());
+                Log.WriteErrorLog(ex.ToString());
             }
             finally
             {
@@ -130,7 +130,7 @@ namespace HanDe_ClassLibrary.PrinergyEvoFile.Preps
             }
             catch (Exception ex)
             {
-                Log.WriteLog(ex.ToString());
+                Log.WriteErrorLog(ex.ToString());
             }
             finally
             {

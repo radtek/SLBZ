@@ -60,7 +60,7 @@ namespace HanDe_ClassLibrary.PrinergyEvoFile.DataProcess
             }
             catch (Exception ex)
             {
-                Log.WriteLog(ex.ToString());
+                Log.WriteErrorLog(ex.ToString());
 
             }
             finally

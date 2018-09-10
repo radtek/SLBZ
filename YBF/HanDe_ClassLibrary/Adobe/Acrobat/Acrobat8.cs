@@ -98,7 +98,7 @@ namespace HanDe_ClassLibrary.PrepressFile.Adobe.Acrobat
             }
             catch (Exception ex)
             {
-                Log.WriteLog(ex.ToString());                
+                Log.WriteErrorLog(ex.ToString());                
             }
             finally
             {

@@ -34,7 +34,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>ooopic_1523149264.ico</ApplicationIcon>
+    <ApplicationIcon>11.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="ICSharpCode.SharpZipLib">
@@ -61,6 +61,7 @@
     <Reference Include="System.Data.SQLite">
       <HintPath>..\..\..\..\xiao\0000\HanDe_JobManager_SQLite\FormMian\bin\Debug\System.Data.SQLite.dll</HintPath>
     </Reference>
+    <Reference Include="System.Management" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -99,6 +100,11 @@
     <Compile Include="HanDe_ClassLibrary\Unit\MilliMetre_Unit.cs" />
     <Compile Include="HanDe_ClassLibrary\Unit\Point_Unit.cs" />
     <Compile Include="HanDe_ClassLibrary\Unit\Unit.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="WinForm\ChuBan\FormBaoBiao.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -122,6 +128,18 @@
     </Compile>
     <Compile Include="WinForm\FormPublishProcess.designer.cs">
       <DependentUpon>FormPublishProcess.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WinForm\Tool\FormToolAll.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WinForm\Tool\FormToolAll.Designer.cs">
+      <DependentUpon>FormToolAll.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WinForm\Ywj\FormSavePdf.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WinForm\Ywj\FormSavePdf.Designer.cs">
+      <DependentUpon>FormSavePdf.cs</DependentUpon>
     </Compile>
     <Compile Include="WinForm\Ywj\FormYwj.cs">
       <SubType>Form</SubType>
@@ -167,6 +185,12 @@
     <EmbeddedResource Include="WinForm\FormPublishProcess.resx">
       <DependentUpon>FormPublishProcess.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="WinForm\Tool\FormToolAll.resx">
+      <DependentUpon>FormToolAll.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WinForm\Ywj\FormSavePdf.resx">
+      <DependentUpon>FormSavePdf.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="WinForm\Ywj\FormYwj.resx">
       <DependentUpon>FormYwj.cs</DependentUpon>
     </EmbeddedResource>
@@ -183,14 +207,10 @@
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
     <None Include="app.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -203,7 +223,20 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="ooopic_1523149264.ico" />
+    <Content Include="11.ico" />
+    <None Include="Resources\exeInco.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="Illustrator">
+      <Guid>{6302455F-E28B-4425-B2A1-B7A34F025651}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+      <Private>True</Private>
+    </COMReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

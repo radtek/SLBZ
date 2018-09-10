@@ -12,6 +12,9 @@ using System.IO;
 using System.Text.RegularExpressions;
 using Microsoft.VisualBasic.FileIO;
 using System.Diagnostics;
+using Illustrator;
+using YBF.Properties;
+using YBF.Class.Comm;
 
 namespace YBF.WinForm.Ywj
 {
@@ -48,7 +51,7 @@ namespace YBF.WinForm.Ywj
                 {
                     pcmdList.Add(md["FileFullName"].ToString());
                 }
-               
+
 
                 foreach (DataRow dr in dt.Rows)
                 {
@@ -115,35 +118,69 @@ namespace YBF.WinForm.Ywj
         {
             DateTime dt = DateTime.Now;
             string Path_CopyTo = string.Format(@"H:\输出原文件\{0}年{1}月\{1}-{2}",
-                dt.ToString("yy"), dt.Month, dt.Day);            
+                dt.ToString("yy"), dt.Month, dt.Day);
             ListView.SelectedListViewItemCollection coll = this.listViewYwj.SelectedItems;
             if (coll.Count > 0)
             {
                 foreach (ListViewItem item in coll)
                 {
                     YwjInfo ywj = item.Tag as YwjInfo;
-
-                    FileSystem.CopyFile(ywj.Path + "\\" + item.Text
-                        , Path_CopyTo + "\\" + item.Text
-                        ,UIOption.AllDialogs,UICancelOption.DoNothing);
-                    if (File.Exists(Path_CopyTo + "\\" + item.Text))
+                    string sourceFileName = ywj.Path + "\\" + item.Text;
+                    string destinationFileName = Path_CopyTo + "\\" + item.Text;
+                    if (Path.GetExtension(sourceFileName).LastIndexOf(".pdf"
+                       , StringComparison.OrdinalIgnoreCase) > -1)
                     {
-                        FileSystem.MoveFile(ywj.Path + "\\" + item.Text
-                       , ywj.PathMove + "\\" + item.Text
-                       , UIOption.AllDialogs, UICancelOption.DoNothing);
+                        destinationFileName = @"\\128.1.30.144\HotFolders\RefineToPDF\"
+                            + Path.GetFileName(destinationFileName);
                     }
+                    FileSystem.CopyFile(sourceFileName, destinationFileName
+                        , UIOption.AllDialogs, UICancelOption.DoNothing);
                    
+                    if (File.Exists(destinationFileName))
+                    {
+                        FileSystem.MoveFile(sourceFileName, ywj.PathMove + "\\" + item.Text
+                       , UIOption.AllDialogs, UICancelOption.DoNothing);
+                        if (Path.GetExtension(destinationFileName).LastIndexOf(".ai", StringComparison.OrdinalIgnoreCase) >-1)
+                        {
+                            Comm_Method.AiFileList.Add(destinationFileName);
+                        }
+                    }
                 }
                 InitListView();
-                if (!Directory.Exists(Path_CopyTo+"\\ok"))
+                if (!Directory.Exists(Path_CopyTo + "\\ok"))
                 {
                     Directory.CreateDirectory(Path_CopyTo + "\\ok");
                 }
                 Process.Start("Explorer.exe", Path_CopyTo);
-                
+
             }
-           
+
         }
+        ///// <summary>
+        ///// 转存为PDF
+        ///// </summary>
+        ///// <param name="fileList"></param>
+        //public  void AutoSavePdf(List<string> fileList)
+        //{
+
+        //    if (fileList.Count == 0)
+        //    {
+        //        return;
+        //    }
+        //    //***开始自动转PDF
+        //    //判断Adobe Illustrator CS6 (64 Bit)是否运行
+        //    string aiexe = @"C:\Program Files\Adobe\AdobeIllustratorCS6_x64\Support Files\Contents\Windows\Illustrator.exe";
+        //    if (File.Exists(aiexe))
+        //    {
+        //        Illustrator.ApplicationClass app = new Illustrator.ApplicationClass();
+        //        foreach (string item in fileList)
+        //        {
+        //            app.DoJavaScript(Resources.AutoSavePdf.Replace
+        //                ("*文件名*", item.Replace('\\', '/')));
+        //        }
+        //    }
+        //}
+
 
         private void tsmiPaiChu_Click(object sender, EventArgs e)
         {
@@ -156,14 +193,14 @@ namespace YBF.WinForm.Ywj
                     YwjInfo ywj = item.Tag as YwjInfo;
                     string fileFullName = ywj.Path + "\\" + item.Text;
                     sqlList.Add(
-                        "INSERT INTO [Ywj_PaiChu]([FileFullName])VALUES('" 
+                        "INSERT INTO [Ywj_PaiChu]([FileFullName])VALUES('"
                         + fileFullName + "');");
                 }
                 if (SQLiteList.Ybf.ExecuteSqlTran(sqlList))
                 {
                     InitListView();
                 }
-                
+
             }
         }
     }

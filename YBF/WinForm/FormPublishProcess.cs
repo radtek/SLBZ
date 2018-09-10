@@ -39,7 +39,7 @@ namespace HanDe_ToolBox_Form
             this.SearchTxt = this.textBox1.Text.Trim();
             string sql =
                 "select * from filename where ProcessCreationInfo like'%"
-                + this.SearchTxt.Trim() + "%'limit 100";
+                + this.SearchTxt.Trim() + "%' order by CompleteTime desc limit 100";
             foreach (DataRow row in SQLiteList.BackupProcess.ExecuteDataTable(sql).Rows)
             {
                 processList.Add(GetProcessInfoList(row));
